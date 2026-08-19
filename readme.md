@@ -3,7 +3,7 @@
 **Anass Mohattan**
 
 ## Module_1
-I did excercice 1,2,3
+I completed first program "Hello message"
 
 ## module_2
-I did excercices 2,4,5,6
+I not sure if I did yet
