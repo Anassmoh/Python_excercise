@@ -8,3 +8,4 @@ I completed first program "Hello message"
 ## module_3
 I completed excerice_1
 I completed excercice_2
+I completed excercice_3
