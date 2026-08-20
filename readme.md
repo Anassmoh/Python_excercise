@@ -2,8 +2,8 @@
 
 **Anass Mohattan**
 
-## Module_1
+## Module_1_&_2
 I completed first program "Hello message"
 
-## module_2
-I not sure if I did yet
+## module_3
+I completed excerice_1
