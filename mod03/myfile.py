@@ -10,3 +10,8 @@ print("Good\nmorning")
 
 name = input("name:")
 print(name)
+
+# just checking if there is comments in Terminal
+
+player_name = "Juha"
+print(player_name)
