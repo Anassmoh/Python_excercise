@@ -7,5 +7,7 @@ print(4)
 print("Good\nmorning")
 
 
-input('Name:')
-print('Ok, you entered a name')
+
+name = input("Give name:")
+greeting = "Hello, " + name +"!"
+print(greeting)
