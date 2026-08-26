@@ -7,3 +7,4 @@ I completed first program "Hello message"
 
 ## module_3
 I completed all 6 excercices
+I shared the link to mod03 file (task 7)
