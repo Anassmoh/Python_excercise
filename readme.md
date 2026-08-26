@@ -8,3 +8,7 @@ I completed first program "Hello message"
 ## module_3
 I completed all 6 excercices
 I shared the link to mod03 file (task 7)
+
+## module_4
+I finished Excercise 1 and 2
+Still have questions about Excercise 3
