@@ -12,3 +12,6 @@ I shared the link to mod03 file (task 7)
 ## module_4
 I finished all 4 Excercises
 However Still have questions about Excercise 3
+
+## project_1
+created the folder and made the name and age programm
