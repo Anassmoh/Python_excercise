@@ -5,7 +5,7 @@ low = "Your hemoglobin is low."
 normal = "Your hemoglobin is normal."
 high = "Your hemoglobin is high."
 
-#requirement is to ignore only the format of the first letter
+# requirement is to ignore only the format of the first letter in moodle but testing is ignoring the whole word.
 
 if gender[:1].lower() + gender[1:] == "male":
 
@@ -30,4 +30,4 @@ elif gender[:1].lower() + gender[1:] == "female":
 else:
        print("Invalid gender.")
 
-#would still ask about hemoglobin eventhough gender is invalid
+# would still ask about hemoglobin eventhough gender is invalid on moodle testing
