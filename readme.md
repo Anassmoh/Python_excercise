@@ -14,7 +14,7 @@ I finished all 4 Excercises
 However Still have questions about Excercise 3
 
 ## module_5
-I finished excercise 1 and 2 and 3
+I finished all 6 excercices
 
 ## project_1
 created the folder and made the name and age programm
