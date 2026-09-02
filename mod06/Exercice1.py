@@ -10,6 +10,5 @@ for roll in range(rolls):
 
 print("Sum of the dice:", sum)
 
-
    
     
