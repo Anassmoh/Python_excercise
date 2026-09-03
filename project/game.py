@@ -17,7 +17,19 @@ if age >= 12:
             select2 = input("[1] Change username \n[2] Email support \n[3] Back to main menu\nSelect an option for 1 to 3: ")
             if select2 == "1":
                 name = input("Enter your name: ")
-                print(F"{name}, {age} years old.")
+                new_player = input("Are you a new player? ([1]Yes / [2]No): ")
+                if new_player == "1":
+                    age = int(input("Enter your age: "))
+                    if age >= 12:
+                        print(f"{name}, {age} years old.\nHello {name}, welcome to LootBall")
+                    if 0 < age < 12:
+                        print("Your age doesn't meet the minimum required, the game will exit immediately!")
+                        break
+                elif new_player == "2":
+                    print(F"{name}, {age} years old.")
+                else:
+                    print(error)
+        
             elif select2 == "2":
                 print("support@lootball.com")
             elif select == "3":
@@ -34,3 +46,4 @@ elif 0 < age < 12:
     print("Your age doesn't meet the minimum required, the game will exit immediately!")
 else:
     print("invalid input")
+
