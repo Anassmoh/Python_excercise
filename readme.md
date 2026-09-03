@@ -24,3 +24,5 @@ I finished all 6 exercices
 
 ## project_1
 created the folder and made the name and age programm
+## project_2
+added the manu and some commands
