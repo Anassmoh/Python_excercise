@@ -7,7 +7,7 @@ error = "Please select a valid option."
 if age >= 12:
     print(f"{name}, {age} years old.\nHello {name}, welcome to LootBall")
     while True:
-        print("Main menu \n[1] Start\n[2] Stats\n[3] settings\n[4] Lopeta")
+        print("Main menu \n[1] Start\n[2] Stats\n[3] settings\n[4] Exit")
         select = input("Select an option from 1 to 4, type 'lopeta' to exit: ")
         if select == "1":
             print("Starting game..")
