@@ -41,6 +41,7 @@ if age >= 12:
             break
         else:
             print(error)
+            
     
 elif 0 < age < 12:
     print("Your age doesn't meet the minimum required, the game will exit immediately!")
