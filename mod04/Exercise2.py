@@ -1,18 +1,17 @@
-cabin_class = input("Enter the cabin class (LUX, A, B, or C): ")
-                
+cabin = input("Enter the cabin class (LUX, A, B, or C): ")
 
 LUX = "Upper-deck cabin with a balcony."
 A = "Above the car deck, equipped with a window."
 B = "Windowless cabin above the car deck."
 C = "Windowless cabin below the car deck."
 
-if cabin_class == "LUX":
+if cabin == "LUX":
     print(LUX)
-elif cabin_class == "A":
+elif cabin == "A":
     print(A)
-elif cabin_class == "B":
+elif cabin == "B":
     print(B)
-elif cabin_class == "C":
+elif cabin == "C":
     print(C)
 else:
     print("Invalid cabin class.")

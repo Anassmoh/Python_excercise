@@ -7,26 +7,26 @@ high = "Your hemoglobin is high."
 
 # requirement is to ignore only the format of the first letter in moodle but testing is ignoring the whole word.
 
-if gender[:1].lower() + gender[1:] == "male":
+if gender[0].lower() + gender[1:] == "male":
 
     hemoglobin = float(input("Enter hemoglobin value (g/l): "))
 
     if hemoglobin > 167:
             print(high)
-    elif hemoglobin < 134:
-            print(low)
-    else:
+    elif hemoglobin > 134:
             print(normal)
+    else:
+            print(low)
 
-elif gender[:1].lower() + gender[1:] == "female":
+elif gender[0].lower() + gender[1:] == "female":
 
     hemoglobin = float(input("Enter hemoglobin value (g/l): ")) 
     if hemoglobin > 155:
             print(high)
-    elif hemoglobin < 117:
-            print(low)
-    else:
+    elif hemoglobin > 117:
             print(normal)
+    else:
+            print(low)
 else:
        print("Invalid gender.")
 

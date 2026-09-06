@@ -1,13 +1,11 @@
 year = int(input("Enter a year: "))
+by_4 = year % 4
+by_100 = year % 100
+by_400 = year % 400
 
-test_1 = year % 4
-test_2 = year % 100
-test_3 = year % 400
-
-if test_1 == 0 and test_2 != 0:
-    print(str(year) + " is a leap year.")
-elif test_3 == 0:
-    print(str(year) + " is a leap year.")
+if by_400 == 0:
+    print(year, "is a leap year.")
+elif by_4 == 0 and by_100 != 0:
+    print(year, "is a leap year.")
 else:
-    print(str(year) + " is not a leap year.")
-
+    print(year, "is not a leap year.")
