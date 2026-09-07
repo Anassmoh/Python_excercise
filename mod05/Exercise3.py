@@ -1,32 +1,18 @@
 number = input("Enter a number (or press Enter to quit): ")
-biggest = number
-smallest = number
-
-
-if number == "":
-    smallest = 0
-    biggest = 0
-    
+smallest = largest = number
 
 while number != "":
-
     number = float(number)
-    
-
-    if float(biggest) < number:
-         biggest = number
-    elif float(smallest) > number:
-         smallest = number
-    elif float(smallest) == float(biggest) == number:
-        
-        smallest = float(smallest)
-        biggest = float(biggest)
-        smallest = float(biggest)
-    
-    
+    smallest = float(smallest)
+    largest = float(largest)
+    if number < smallest:
+        smallest = number
+    elif number > largest:
+        largest = number
     number = input("Enter a number (or press Enter to quit): ")
+
+if largest == "":
+    print("Smallest number: 0.0 \nLargest number: 0.0")
+# considering the first input is an empty string
 else:
-    print(f"Smallest number: {smallest:.1f} \nLargest number: {biggest:.1f}")
-
-
-    
+    print(f"Smallest number: {smallest:.1f} \nLargest number: {largest:.1f}")

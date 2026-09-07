@@ -1,11 +1,17 @@
-money = float(input("Give money: "))
-age = float(input("give age :"))
+import random
+times = 0
+total = 0
 
-print(money >= 10)
-print(age >= 15)
 
-if money >= 10 and age >= 15:
-#if true and True
-    print("You may buy the energy drink")
-else:
-    print("Get out")
+
+while times < 1000:
+    dice1 = dice2 = rolls = 0
+    while (dice1 != 6 or dice2 != 6):
+        dice1 = random.randint(1,6)
+        dice2 = random.randint(1,6)
+        rolls += 1
+    total += rolls
+    times += 1
+average = total / times
+
+print(f"hte average is {average:6.2f}")       

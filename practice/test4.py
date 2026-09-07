@@ -1,7 +1,6 @@
-name = input("give your name please : ")
+number = 1
 
-if name == "ava":
-    print("You're a teacher")
-
-else:
-    print("you're a student")
+while (number <= 1000 and number % 3 == 0):
+    print(number)
+    number += 1
+    

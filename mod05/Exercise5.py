@@ -1,22 +1,15 @@
-username_OG = "python"
-password_OG = "rules"
-
-username = str(input("Enter username: "))
-password = str(input("Enter password: "))
-attempt = 1
-
+login_username = "python"
+login_password = "rules"
+attempt = 0
 while attempt < 5:
-    if username == username_OG and password == password_OG:
+    username = input("Enter username: ")
+    password = input("Enter password: ")
+    attempt += 1
+    if username == login_username and password == login_password:
         print("Welcome")
         break
-
-    else:
+    elif attempt < 5:
         print("Incorrect username or password. Please try again.")
-
-        attempt += 1
-
-        username = str(input("Enter username: "))
-        password = str(input("Enter password: "))
+    # elif needed in order to really check the last attempt before locking up.
 else:
     print("Access denied")
-    

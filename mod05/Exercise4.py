@@ -1,17 +1,12 @@
 import random
+number = random.randint(1,10)
+guess = int(input("Guess a number (1-10): "))
 
-integer = random.randint(1,10)
-print(integer)
-number = int(input("Give a number (1-10): "))
-
-while number != integer:
-    if number < integer:
+while number != guess:
+    if guess < number:
         print("Too low")
-        
-    elif number > integer:
+    else:
         print("Too high")
+    guess = int(input("Guess a number (1-10): "))
+print("Correct")
     
-    
-    number = int(input("Give a number (1-10): "))
-else:
-    print("Correct")

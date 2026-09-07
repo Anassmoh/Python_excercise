@@ -1,9 +1,6 @@
+number = 1
 
-round = 1
-
-while round <= 1000:
-    tri = round % 3
-    if tri == 0:
-        print(round)
-    round += 1
-       
+while number <= 1000:
+    if number % 3 == 0:
+        print(number)
+    number += 1
