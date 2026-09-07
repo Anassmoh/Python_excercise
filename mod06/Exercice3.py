@@ -1,17 +1,10 @@
 number = int(input("Enter an integer: "))
-modulos = []
-
-i = 0
-
-while i < number:
-
-    div = number % (i+1)
-    modulos.append(div)
-    i += 1
-
-if number == 0 or number == 1:
+result = 0
+for n in range(number):
+    test = number % (number - n)
+    if test == 0:
+        result += 1
+if result != 2:
     print(number, "is not a prime number.")
-elif modulos.count(0) > 2:
-    print(number, "is not a prime number.")
-else:
+else: 
     print(number, "is a prime number.")
