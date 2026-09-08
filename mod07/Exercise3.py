@@ -1,12 +1,11 @@
-
 def gallons_to_liters(gallons):
-    op = gallons * 3.785
-    return op
+    litres = 3.785 * gallons
+    return litres
 
-gallons = float(input("Enter a volume in American gallons (negative value to quit): "))
-
-while gallons >= 0:
-    print(f"{gallons} American gallons is {gallons_to_liters(gallons):.2f} liters.")
+while True:
     gallons = float(input("Enter a volume in American gallons (negative value to quit): "))
-
+    if gallons < 0:
+        break
+    print(f"{gallons} American gallons is {gallons_to_liters(gallons):.2f} liters.")
+    
 print("Program finished.")
