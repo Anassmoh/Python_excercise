@@ -19,6 +19,11 @@ def name_age():
             break
     return name, age
 
+def display(menu_list):
+    for menu in menu_list:
+        print(menu)
+    return
+
 def choose_option():
     option = input("\nSelect an option or type 'lopeta' to exit: ")
     return option
@@ -74,19 +79,17 @@ def quit():
 
 def main_menu():
     print("\nMAIN MENU\n")
-    for menu in main_menu_list:
-        print(menu)
+    display(main_menu_list)
     main_menu_option = choose_option()
     check_input(main_menu_option, main_menu_list)
     return main_menu_option
 
 def play_menu():
-    list_play_menu = ["[1] Roadside", "[2] Beach", "[3] Lake", "[4] Main menu", "[5] Exit"]
+    play_menu_list = ["[1] Roadside", "[2] Beach", "[3] Lake", "[4] Main menu", "[5] Exit"]
     print("\nSELECT A MAP\n")
-    for play in list_play_menu:
-        print(play)
+    display(play_menu_list)
     map_option = choose_option()
-    check_input(map_option, list_play_menu)
+    check_input(map_option, play_menu_list)
     if map_option == "1":
             magnet_fishing(roadside_net)
     elif map_option == "2":
@@ -102,8 +105,7 @@ def play_menu():
 def inventory_menu():
     inventory_menu_list = ["[1] All the nets ", "[2] Roadside net", "[3] Beach net", "[4] Lake net", "[5] Main menu", "[6] Exit"]    
     print("\nSELECT A NET\n")
-    for net in inventory_menu_list:
-        print(net)
+    display(inventory_menu_list)
     inventory_option = choose_option()
     check_input(inventory_option, inventory_menu_list)
     if inventory_option == "1" :
@@ -153,8 +155,7 @@ def inventory_menu():
 def setting_menu():
     setting_menu_list = ["[1] Recycle all the nets", "[2] Recycle a net", "[3] Main menu", "[4] Exit"]
     print("\nSELECT AN OPTION\n")
-    for setting in setting_menu_list:
-        print(setting)
+    display(setting_menu_list)
     setting_option = choose_option()
     check_input(setting_option, setting_menu_list)
     if setting_option == "1":
@@ -163,24 +164,23 @@ def setting_menu():
         lake_net.clear()
         print("\nAll the metal has been recycled, Well done!")
     elif setting_option == "2":
-        clear_menu_list = ["[1] Roadside net", "[2] Beach net", "[3] Lake net", "[4] Main menu", "[5] Exit"]
+        recycle_menu_list = ["[1] Roadside net", "[2] Beach net", "[3] Lake net", "[4] Main menu", "[5] Exit"]
         print("\nSELECT A NET\n")
-        for net in clear_menu_list:
-            print(net)
-        clear_option = choose_option()
-        check_input(clear_option, clear_menu_list)
-        if clear_option == "1":
+        display(recycle_menu_list)
+        recycle_option = choose_option()
+        check_input(recycle_option, recycle_menu_list)
+        if recycle_option == "1":
             roadside_net.clear()
             print("The roadside net's metals have been recycled, Well done!")
-        elif clear_option == "2":
+        elif recycle_option == "2":
             beach_net.clear()
             print("The beach net's metals have been recycled, Well done!")
-        elif clear_option == "3":
+        elif recycle_option == "3":
             lake_net.clear()
             print("The lake net's metals have been recycled, Well done!")
-        elif clear_option == "4":
+        elif recycle_option == "4":
             main_menu_option = main_menu()
-        elif clear_option == "5" or clear_option == "lopeta":
+        elif recycle_option == "5" or recycle_option == "lopeta":
             exit = quit()
     elif setting_option== "3":
         pass
