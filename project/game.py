@@ -4,19 +4,19 @@ roadside_net, beach_net, lake_net = [], [], []
 all_nets = [roadside_net, beach_net, lake_net]
 
 def name_age():
-    name = input("Enter your name: ")
-    while name == "":
-        print("invalid input")
+    while True:
         name = input("Enter your name: ")
-        if name != "":
+        if name == "":
+            print("invalid input")
+        else:
+            name = name[0].upper() + name[1:].lower()
             break
-    age = input("Enter your age: ")
-    while age == "" or int(age) < 0:
-        print("invalid input")
+    while True:
         age = input("Enter your age: ")
-        if age != "":
+        if age == "":
+            print("invalid input")
+        else:
             break
-    name = name[0].upper() + name[1:].lower()
     return name, age
 
 def choose_option():
