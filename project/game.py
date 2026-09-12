@@ -1,7 +1,49 @@
 import random
-main_menu_list = ["[1] Cast", "[2] Inventory", "[3] Settings", "[4] Exit"]
+main_menu_list = ["[1] Play", "[2] Inventory", "[3] Settings", "[4] Exit"]
 roadside_net, beach_net, lake_net = [], [], []
 all_nets = [roadside_net, beach_net, lake_net]
+
+def name_age():
+    name = input("Enter your name: ")
+    while name == "":
+        print("invalid input")
+        name = input("Enter your name: ")
+        if name != "":
+            break
+    age = input("Enter your age: ")
+    while age == "" or int(age) < 0:
+        print("invalid input")
+        age = input("Enter your age: ")
+        if age != "":
+            break
+    name = name[0].upper() + name[1:].lower()
+    return name, age
+
+def choose_option():
+    option = input("\nSelect an option or type 'lopeta' to exit: ")
+    return option
+
+def check_input(option, list):
+    if option == "lopeta" or option == "":
+        pass
+    elif int(option) > len(list) or int(option) < 0:
+        print("invalid input")
+    return
+
+def magnet_fishing(net):
+    while True:
+        cast = input("Press ENTER to cast your magnet or type any other key to change the map: ")
+        if cast != "":
+            play_menu()
+            main_menu_list = add_restart()
+            break
+        else:
+            for _ in range(random.randint(3,8)):
+                print("\nbeep..")
+            metal_litter = input("\nBEEP BEEP BEEP\nYou found some metal litter, name the item and press ENTER to collect it to the net: ")
+            net.append(metal_litter)
+            print("Item added to the net!\n")
+    return
 
 def add_restart():
     if "[4] Restart" not in main_menu_list:
@@ -16,23 +58,19 @@ def restart_game():
         beach_net.clear()
         lake_net.clear()
         print("All the metal have been recycled, Goodbye!")
-        main_menu_list = ["[1] Cast", "[2] Inventory", "[3] Settings", "[4] Exit"]
+        main_menu_list = ["[1] Play", "[2] Inventory", "[3] Settings", "[4] Exit"]
     else:
         pass
     return restart
 
-def magnet_fishing():
-    for _ in range(random.randint(3,8)):
-        print("\nbeep..")
-    return
-
-
-def check_input(option, list):
-    if option == "lopeta" or option == "":
+def quit():
+    exit = input('Are you sure you want to quit?\nType "yes" to confirm or any other key to resume: ')
+    exit = exit.lower()
+    if exit == "yes":
+        print("All the metal have been recycled, Goodbye!")
+    else:
         pass
-    elif int(option) > len(list) or int(option) < 0:
-        print("invalid input")
-    return
+    return exit
 
 def main_menu():
     print("\nMAIN MENU\n")
@@ -42,44 +80,19 @@ def main_menu():
     check_input(main_menu_option, main_menu_list)
     return main_menu_option
 
-def cast_menu():
-    list_cast_menu = ["[1] Roadside", "[2] Beach", "[3] Lake", "[4] Main menu", "[5] Exit"]
+def play_menu():
+    list_play_menu = ["[1] Roadside", "[2] Beach", "[3] Lake", "[4] Main menu", "[5] Exit"]
     print("\nSELECT A MAP\n")
-    for map in list_cast_menu:
-        print(map)
+    for play in list_play_menu:
+        print(play)
     map_option = choose_option()
-    check_input(map_option, list_cast_menu)
+    check_input(map_option, list_play_menu)
     if map_option == "1":
-        while True:
-            magnet_fishing()
-            metal_item = input("\nBEEP BEEP BEEP\nYou found some metal litter in the roadside, name the item and press ENTER to collect it to the net: ")
-            roadside_net.append(metal_item)
-            cast_again = input("Item added to the net!\nPress ENTER to cast your magnet or type any other key to change the map: ")
-            if cast_again != "":
-                cast_menu()
-                main_menu_list = add_restart()
-                break
-        
+            magnet_fishing(roadside_net)
     elif map_option == "2":
-        while True:
-            magnet_fishing()
-            metal_item = input("\nBEEP BEEP BEEP\nYou found some metal litter in the sand, name the item and press ENTER to collect it to the net: ")
-            beach_net.append(metal_item)
-            cast_again = input("Item added to the net!\nPress ENTER to cast your magnet or type any other key to change the map: ")
-            if cast_again != "":
-                cast_menu()
-                main_menu_list = add_restart()
-                break
+        magnet_fishing(beach_net)
     elif map_option == "3":
-        while True:
-            magnet_fishing()
-            metal_item = input("\nBEEP BEEP BEEP\nYou found some metal litter underwater, name the item and press ENTER to collect it to the net: ")
-            lake_net.append(metal_item)
-            cast_again = input("Item added to the net!\nPress ENTER to cast your magnet or type any other key to change the map: ")
-            if cast_again != "":
-                cast_menu()
-                main_menu_list = add_restart()
-                break
+        magnet_fishing(lake_net)
     elif map_option == "4":
         pass
     elif map_option == "5" or map_option == "lopeta":
@@ -175,36 +188,6 @@ def setting_menu():
         exit = quit()
         return exit
 
-def choose_option():
-    option = input("\nSelect an option or type 'lopeta' to exit: ")
-    return option
-
-
-def quit():
-    exit = input('Are you sure you want to quit?\nType "yes" to confirm or any other key to resume: ')
-    exit = exit.lower()
-    if exit == "yes":
-        print("All the metal have been recycled, Goodbye!")
-    else:
-        pass
-    return exit
-        
-def name_age():
-    name = input("Enter your name: ")
-    while name == "":
-        print("invalid input")
-        name = input("Enter your name: ")
-        if name != "":
-            break
-    age = input("Enter your age: ")
-    while age == "" or int(age) < 0:
-        print("invalid input")
-        age = input("Enter your age: ")
-        if age != "":
-            break
-    name = name[0].upper() + name[1:].lower()
-    return name, age
-
 name, age = name_age()
 
 while int(age) >= 12:
@@ -212,7 +195,7 @@ while int(age) >= 12:
     while True:
         main_menu_option = main_menu()
         if main_menu_option == "1":
-            exit = cast_menu()
+            exit = play_menu()
             if exit == "yes":
                 break
         elif main_menu_option == "2":
