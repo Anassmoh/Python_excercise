@@ -22,7 +22,15 @@ I finished all 4 exercices
 ## module_7
 I finished all 6 exercices
 
+## module_8
+I finished all 4 exercices
+
+## module_9
+I did 2 exercices
+
 ## project_1
 created the folder and made the name and age programm
 ## project_2
 added the manu and some commands.
+## project_3
+added some functions and commands.
