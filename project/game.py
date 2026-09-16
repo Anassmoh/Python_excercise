@@ -228,4 +228,9 @@ else:
     if int(age) < 12:
         print("Your age doesn't meet the minimum required, the game will exit immediately!")
 
-#need to add uv to detect differents stuff
+#need to add uv to detect differents stuff 
+#add also 
+ #x = random.randint(0,150)
+#for i in range(x-3,x+1):
+#    print(i)
+#print(f"{x}\n{x}")

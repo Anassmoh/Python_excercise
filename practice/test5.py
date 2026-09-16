@@ -1,6 +1,6 @@
-age = float(input("give age :"))
+import random
+x = random.randint(0,150)
 
-if age >= 18:
-    print("You're adult")
-else:
-    print("You're not adult") #tryimg the same output
+for i in range(x-3,x+1):
+    print(i)
+print(f"{x}\n{x}")
