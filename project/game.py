@@ -227,3 +227,5 @@ while int(age) >= 12:
 else: 
     if int(age) < 12:
         print("Your age doesn't meet the minimum required, the game will exit immediately!")
+
+#need to add uv to detect differents stuff
