@@ -234,3 +234,11 @@ else:
 #for i in range(x-3,x+1):
 #    print(i)
 #print(f"{x}\n{x}") 
+#import time
+#import random
+
+
+
+#for x in range(random.randint(3,8)):
+#    time.sleep(0.7)
+#    print(x)
