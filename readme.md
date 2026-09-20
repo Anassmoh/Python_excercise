@@ -26,7 +26,7 @@ I finished all 6 exercices
 I finished all 4 exercices
 
 ## module_9
-I did 2 exercices
+I finished all 4 exercices
 
 ## project_1
 created the folder and made the name and age programm
