@@ -1,7 +1,18 @@
 import random
+import time
+
 main_menu_list = ["[1] Play", "[2] Inventory", "[3] Settings", "[4] Exit"]
 roadside_net, beach_net, lake_net = [], [], []
-all_nets = [roadside_net, beach_net, lake_net]
+
+
+class MetalFinding:
+    def __init__(self, name, voltage):
+        self.name = name
+        self.voltage = voltage
+        self.weight = 0
+        self.matter = "0"
+            
+
 
 def name_age():
     while True:
@@ -44,10 +55,35 @@ def magnet_fishing(net):
             break
         else:
             for _ in range(random.randint(3,8)):
-                print("\nbeep..")
-            metal_litter = input("\nBEEP BEEP BEEP\nYou found some metal litter, name the item and press ENTER to collect it to the net: ")
+                time.sleep(0.5)
+                print("\n0 μV")
+            voltage = random.randint(1,150)
+            for n in range(4):
+                time.sleep(0.2)
+                print(f"\n{voltage - 4 + n} μV")
+            magnetude = random.choice([True,False])
+            if magnetude == True:
+                weight = voltage * 1.5
+                matter = "Iron"
+                metal_litter = input(f"\n{voltage} μV\n\n{voltage} μV\nYou found {weight}g of {matter}, name the item and press ENTER to collect it to the net: ")
+            else:
+                weight = "N/A"
+                if 0 < voltage <= 50:
+                    matter = random.choice(["aluminum", "brass"])
+                    metal_litter = input(f"\n{voltage} μV\n\n{voltage} μV\nYou found some {matter}, name the item and press ENTER to collect it to the net: ")
+                elif 50 < voltage <= 100:
+                    matter = random.choice(["silver", "copper"])
+                    metal_litter = input(f"\n{voltage} μV\n\n{voltage} μV\nYou found some {matter}, name the item and press ENTER to collect it to the net: ")
+                else:                            
+                    matter = "gold"
+                    metal_litter = input(f"\n{voltage} μV\n\n{voltage} μV\nCongratulations! You found some {matter}, name the item and press ENTER to collect it to the net: ")
             net.append(metal_litter)
+            metal_litter = MetalFinding(metal_litter, voltage)
+            metal_litter.matter = matter
+            metal_litter.weight = weight
             print("Item added to the net!\n")
+            print(f"{metal_litter.name} {metal_litter.voltage}μV {metal_litter.weight}g {metal_litter.matter}")
+            
     return
 
 def add_restart():
@@ -110,6 +146,7 @@ def inventory_menu():
     check_input(inventory_option, inventory_menu_list)
     if inventory_option == "1" :
         print("\nThis is all your catch so far:\n")
+        print()
         if len(roadside_net) == 0:
             print("Roadside net : Empty")
         else:
