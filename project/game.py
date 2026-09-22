@@ -5,13 +5,20 @@ main_menu_list = ["[1] Play", "[2] Inventory", "[3] Settings", "[4] Exit"]
 roadside_net, beach_net, lake_net = [], [], []
 
 
-class MetalFinding:
+class MetalFound:
     def __init__(self, name, voltage):
         self.name = name
         self.voltage = voltage
         self.weight = 0
         self.matter = 0
-            
+
+class RoadsideFound:
+    pass
+class BeachFound:
+    pass
+class LakeFound:
+    pass
+
 
 
 def name_age():
@@ -65,24 +72,24 @@ def magnet_fishing(net):
             if magnetude == True:
                 weight = voltage * 1.5
                 matter = "Iron"
-                metal_litter = input(f"\n{voltage} μV\n\n{voltage} μV\nYou found {weight}g of {matter}, name the item and press ENTER to collect it to the net: ")
+                metal_litter = input(f"\n{voltage} μV! {voltage} μV! {voltage} μV!\n\nYou found {weight}g of {matter}, name the item and press ENTER to collect it to the net: ")
             else:
                 weight = "N/A"
                 if 0 < voltage <= 50:
                     matter = random.choice(["aluminum", "brass"])
-                    metal_litter = input(f"\n{voltage} μV\n\n{voltage} μV\nYou found some {matter}, name the item and press ENTER to collect it to the net: ")
+                    metal_litter = input(f"\n{voltage} μV! {voltage} μV! {voltage} μV!\n\nYou found some {matter}, name the item and press ENTER to collect it to the net: ")
                 elif 50 < voltage <= 100:
                     matter = random.choice(["silver", "copper"])
-                    metal_litter = input(f"\n{voltage} μV\n\n{voltage} μV\nYou found some {matter}, name the item and press ENTER to collect it to the net: ")
+                    metal_litter = input(f"\n{voltage} μV! {voltage} μV! {voltage} μV!\n\nYou found some {matter}, name the item and press ENTER to collect it to the net: ")
                 else:                            
                     matter = "gold"
-                    metal_litter = input(f"\n{voltage} μV\n\n{voltage} μV\nCongratulations! You found some {matter}, name the item and press ENTER to collect it to the net: ")
+                    metal_litter = input(f"\n{voltage} μV! {voltage} μV! {voltage} μV!\n\nCongratulations! You found some {matter}, name the item and press ENTER to collect it to the net: ")
             net.append(metal_litter)
-            metal_litter = MetalFinding(metal_litter, voltage)
+            metal_litter = MetalFound(metal_litter, voltage)
             metal_litter.matter = matter
             metal_litter.weight = weight
             print("Item added to the net!\n")
-            print(f"{metal_litter.name} {metal_litter.voltage} μV {metal_litter.weight} g {metal_litter.matter}")
+            print(f"{metal_litter.name}  {metal_litter.voltage} μV  {metal_litter.weight} g  {metal_litter.matter}")
             
     return
 
@@ -231,6 +238,7 @@ def setting_menu():
 
 name, age = name_age()
 
+# TODO: this breaks when age string
 while int(age) >= 12:
     print(f"\n{name}, {age} years old.\n\nHello {name}, welcome to MagNet!")
     while True:
