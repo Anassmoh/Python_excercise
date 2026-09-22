@@ -4,7 +4,7 @@ import time
 main_menu_list = ["[1] Play", "[2] Inventory", "[3] Settings", "[4] Exit"]
 roadside_net, beach_net, lake_net = [], [], []
 
-
+# TODO: add list for instances as i dont know the objects
 class MetalFound:
     def __init__(self, name, voltage):
         self.name = name
@@ -53,6 +53,7 @@ def check_input(option, list):
         print("invalid input")
     return
 
+# TODO: figure out how to avoid override the object
 def magnet_fishing(net):
     while True:
         cast = input("Press ENTER to cast your magnet or type any other key to change the map: ")
