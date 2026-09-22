@@ -10,7 +10,7 @@ class MetalFinding:
         self.name = name
         self.voltage = voltage
         self.weight = 0
-        self.matter = "0"
+        self.matter = 0
             
 
 
@@ -82,7 +82,7 @@ def magnet_fishing(net):
             metal_litter.matter = matter
             metal_litter.weight = weight
             print("Item added to the net!\n")
-            print(f"{metal_litter.name} {metal_litter.voltage}μV {metal_litter.weight}g {metal_litter.matter}")
+            print(f"{metal_litter.name} {metal_litter.voltage} μV {metal_litter.weight} g {metal_litter.matter}")
             
     return
 
@@ -224,6 +224,10 @@ def setting_menu():
     elif setting_option == "4" or setting_option == "lopeta":
         exit = quit()
         return exit
+
+
+
+
 
 name, age = name_age()
 
