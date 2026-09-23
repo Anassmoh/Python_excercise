@@ -137,7 +137,7 @@ def main_menu():
     return main_menu_option
 
 def play_menu():
-    play_menu_list = ["[1] Roadside", "[2] Beach", "[3] Lake", "[4] Main menu", "[5] Exit"]
+    play_menu_list = ("[1] Roadside", "[2] Beach", "[3] Lake", "[4] Main menu", "[5] Exit")
     print("\nSELECT A MAP\n")
     display(play_menu_list)
     map_option = choose_option()
@@ -155,7 +155,7 @@ def play_menu():
         return exit
 
 def inventory_menu():
-    inventory_menu_list = ["[1] All the nets ", "[2] Roadside net", "[3] Beach net", "[4] Lake net", "[5] Main menu", "[6] Exit"]    
+    inventory_menu_list = ("[1] All the nets ", "[2] Roadside net", "[3] Beach net", "[4] Lake net", "[5] Main menu", "[6] Exit") 
     print("\nSELECT A NET\n")
     display(inventory_menu_list)
     inventory_option = choose_option()
@@ -206,7 +206,7 @@ def inventory_menu():
         return exit
 
 def setting_menu():
-    setting_menu_list = ["[1] Recycle all the nets", "[2] Recycle a net", "[3] Main menu", "[4] Exit"]
+    setting_menu_list = ("[1] Recycle all the nets", "[2] Recycle a net", "[3] Main menu", "[4] Exit")
     print("\nSELECT AN OPTION\n")
     display(setting_menu_list)
     setting_option = choose_option()
@@ -217,7 +217,7 @@ def setting_menu():
         lake_net.clear()
         print("\nAll the metal has been recycled, Well done!")
     elif setting_option == "2":
-        recycle_menu_list = ["[1] Roadside net", "[2] Beach net", "[3] Lake net", "[4] Main menu", "[5] Exit"]
+        recycle_menu_list = ("[1] Roadside net", "[2] Beach net", "[3] Lake net", "[4] Main menu", "[5] Exit")
         print("\nSELECT A NET\n")
         display(recycle_menu_list)
         recycle_option = choose_option()
