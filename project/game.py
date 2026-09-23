@@ -2,29 +2,34 @@ import random
 import time
 
 main_menu_list = ["[1] Play", "[2] Inventory", "[3] Settings", "[4] Exit"]
+#TODO: this is a Tuple so can use all net to unpack better
 roadside_net, beach_net, lake_net = [], [], []
 
 # TODO: add list for instances as i dont know the objects
-class MetalFound:
-    def __init__(self, name, voltage):
+class AllNet:
+    item_count = 0
+    all_net = []
+    def __init__(self, name, voltage, weight, matter):
+        AllNet.all_net.append(self)
         self.name = name
         self.voltage = voltage
-        self.weight = 0
-        self.matter = 0
+        self.weight = weight
+        self.matter = matter
 
-class Collect:
-    def __init__(self, item):
-        self.net = []    
+    def collect_print(self):
+        print(f"{self.name}: {self.voltage} {self.weight} {self.matter}")
 
-class RoadsideFound:
-    def __init__(self, item):
-        self.net = []    
-class BeachFound:
-    def __init__(self, item):
-        self.net = []    
-class LakeFound:
-    def __init__(self, item):
-        self.net = []    
+class RoadsideNet(AllNet):
+    def __init__(self, name, voltage, weight, matter):
+        super().__init__(name, voltage, weight, matter)
+
+class BeachNet(AllNet):
+    def __init__(self, name, voltage, weight, matter):
+        super().__init__(name, voltage, weight, matter)
+
+class LakeNet(AllNet):
+    def __init__(self, name, voltage, weight, matter):
+        super().__init__(name, voltage, weight, matter)
 
 
 
@@ -92,13 +97,8 @@ def magnet_fishing(net):
                 else:                            
                     matter = "gold"
                     metal_litter = input(f"\n{voltage} μV! {voltage} μV! {voltage} μV!\n\nCongratulations! You found some {matter}, name the item and press ENTER to collect it to the net: ")
-            net.append(metal_litter)
-
-            metal_litter = MetalFound(metal_litter, voltage)
-            metal_litter.matter = matter
-            metal_litter.weight = weight
-            print("Item added to the net!\n")
-            print(f"{metal_litter.name}  {metal_litter.voltage} μV  {metal_litter.weight} g  {metal_litter.matter}")
+            roadside_net.append(RoadsideNet(metal_litter, voltage, weight, matter))
+            
             
     return
 
@@ -167,38 +167,38 @@ def inventory_menu():
             print("Roadside net : Empty")
         else:
             for item in roadside_net:
-                print(item)
+                print({item.name})
         if len(beach_net) == 0:
             print("Beach net : Empty")
         else:
             for item in beach_net:
-                print(item)
+                print(item.name)
         if len(lake_net) == 0:
             print("Lake net : Empty")
         else:
             for item in lake_net:
-                print(item)    
+                print(item.name)    
     elif inventory_option == "2":
         if len(roadside_net) == 0:
             print("Your roadside net is empty")
         else:
             print("\nThis is your roadside catch so far:\n")
             for item in roadside_net:
-                print(item)
+                print(item.name)
     elif inventory_option == "3":
         if len(beach_net) == 0:
             print("Your beach net is empty")
         else:
             print("\nThis is your beach catch so far:\n")
             for item in beach_net:
-                print(item)
+                print(item.name)
     elif inventory_option == "4":
         if len(lake_net) == 0:
             print("Your lake net is empty")
         else:
             print("\nThis is your lake catch so far:\n")
             for item in lake_net:
-                print(item)
+                print(item.name)
     elif inventory_option == "5":
         pass
     elif inventory_option == "6" or inventory_option == "lopeta":
