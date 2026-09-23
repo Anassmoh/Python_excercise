@@ -12,12 +12,19 @@ class MetalFound:
         self.weight = 0
         self.matter = 0
 
+class Collect:
+    def __init__(self, item):
+        self.net = []    
+
 class RoadsideFound:
-    pass
+    def __init__(self, item):
+        self.net = []    
 class BeachFound:
-    pass
+    def __init__(self, item):
+        self.net = []    
 class LakeFound:
-    pass
+    def __init__(self, item):
+        self.net = []    
 
 
 
@@ -86,6 +93,7 @@ def magnet_fishing(net):
                     matter = "gold"
                     metal_litter = input(f"\n{voltage} μV! {voltage} μV! {voltage} μV!\n\nCongratulations! You found some {matter}, name the item and press ENTER to collect it to the net: ")
             net.append(metal_litter)
+
             metal_litter = MetalFound(metal_litter, voltage)
             metal_litter.matter = matter
             metal_litter.weight = weight
