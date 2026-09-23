@@ -27,6 +27,7 @@ class RoadsideNet(AllNet):
     def collect_print(self):
         super().collect_print()
         print(" to the roadside net")
+    
 
 class BeachNet(AllNet):
     def __init__(self, name, voltage, weight, matter):
