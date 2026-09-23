@@ -11,17 +11,22 @@ class AllNet:
     all_net = []
     def __init__(self, name, voltage, weight, matter):
         AllNet.all_net.append(self)
+        AllNet.item_count += 1
         self.name = name
         self.voltage = voltage
         self.weight = weight
         self.matter = matter
 
     def collect_print(self):
-        print(f"{self.name}: {self.voltage} {self.weight} {self.matter}")
+        print(f"{self.name} added", end="")
 
 class RoadsideNet(AllNet):
     def __init__(self, name, voltage, weight, matter):
         super().__init__(name, voltage, weight, matter)
+
+    def collect_print(self):
+        super().collect_print()
+        print(" to the roadside net")
 
 class BeachNet(AllNet):
     def __init__(self, name, voltage, weight, matter):
@@ -97,7 +102,9 @@ def magnet_fishing(net):
                 else:                            
                     matter = "gold"
                     metal_litter = input(f"\n{voltage} μV! {voltage} μV! {voltage} μV!\n\nCongratulations! You found some {matter}, name the item and press ENTER to collect it to the net: ")
-            roadside_net.append(RoadsideNet(metal_litter, voltage, weight, matter))
+            temp = RoadsideNet(metal_litter, voltage, weight, matter)
+            roadside_net.append(temp)
+            temp.collect_print()
             
             
     return
@@ -161,13 +168,13 @@ def inventory_menu():
     inventory_option = choose_option()
     check_input(inventory_option, inventory_menu_list)
     if inventory_option == "1" :
-        print("\nThis is all your catch so far:\n")
+        print(f"\nYou collected a total of {AllNet.item_count} items so far:\n")
         print()
         if len(roadside_net) == 0:
             print("Roadside net : Empty")
         else:
             for item in roadside_net:
-                print({item.name})
+                print(item.name)
         if len(beach_net) == 0:
             print("Beach net : Empty")
         else:
