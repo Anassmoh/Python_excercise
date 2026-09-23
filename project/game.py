@@ -72,7 +72,7 @@ def check_input(option, list):
     return
 
 # TODO: figure out how to avoid override the object
-def magnet_fishing(net):
+def magnet_fishing():
     while True:
         cast = input("Press ENTER to cast your magnet or type any other key to change the map: ")
         if cast != "":
