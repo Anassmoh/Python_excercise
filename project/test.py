@@ -1,3 +1,7 @@
+
+#TODO: can have a list and for loop to display list contents
+#TODO: use assosiation or inheritence to append stuff in list
+#TODO: use Class variable to see how many items have been created
 class MetalFound:
     def __init__(self, name, voltage):
         self.name = name
@@ -9,24 +13,6 @@ class AllFound:
     def __init__(self):
         self.net = []    
 
-    def collect(self, item):
-        self.net.append(item)
-
-class RoadsideFound:
-    def __init__(self):
-        self.net = []    
-    def collect(self, item):
-        self.net.append(item)
-
-class BeachFound:
-    def __init__(self):
-        self.net = []
-    def collect(self, item):
-        self.net.append(item)
-
-class LakeFound:
-    def __init__(self):
-        self.net = []    
     def collect(self, item):
         self.net.append(item)
 
