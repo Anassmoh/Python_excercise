@@ -29,7 +29,10 @@ I finished all 4 exercices
 I finished all 4 exercices
 
 ## module_10
-I ..
+I finished all 4 exercices
+
+## module_11
+I finished both exercices
 
 ## project_1
 created the folder and made the name and age programm
