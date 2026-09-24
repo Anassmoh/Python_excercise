@@ -4,20 +4,15 @@ class Elevator:
         self.top_floor = top_floor
         self.current_floor = self.bottom_floor
         
-    
-    def go_to_floor(self, number):
-        while self.current_floor != number:
-            if self.current_floor < number:
-                self.floor_up()
-            elif self.current_floor > number:
+    def go_to_floor(self, floor):
+        while self.current_floor != floor:
+            if self.current_floor > floor:
                 self.floor_down()
             else:
-                break
-            
+                self.floor_up()
+        
     def floor_up(self):
         self.current_floor += 1
-        return
         
     def floor_down(self):
         self.current_floor -= 1
-        return

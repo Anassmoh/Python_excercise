@@ -1,22 +1,19 @@
 airports = {}
-
-def new_airport(code, name):
-    airports[code] = name
-    print("Airport " + name + " with ICAO code " + code + " has been added.")
-    return airports
-
+menu = "\nAirport Data Management\n1. Enter a new airport\n2. Fetch airport information\n3. Quit"
 while True:
-    option = int(input("\nAirport Data Management\n1. Enter a new airport\n2. Fetch airport information\n3. Quit\nPlease choose an option (1-3): "))
+    option = int(input(f"{menu}\nPlease choose an option (1-3): "))
     if option == 1:
-        code = input("Enter the ICAO code: ")
+        ICAO = input("Enter the ICAO code: ")
         name = input("Enter the airport name: ")
-        airports = new_airport(code, name)
+        airports[ICAO] = name
+        print(f"Airport {name} with ICAO code {ICAO} has been added.")
     elif option == 2:
-        code = input("Enter the ICAO code: ")
-        if code in airports:
-            print("The airport with ICAO code " + code + " is " + airports[code] + ".")
+        ICAO = input("Enter the ICAO code: ")
+        if ICAO in airports:
+            print(f"The airport with ICAO code {ICAO} is {airports[ICAO]}.")
         else:
-            print("No airport found with ICAO code " + code + ".")
-    else:
+            print(f"No airport found with ICAO code {ICAO}.")
+    elif option == 3:
+        print("Thank you for using the Airport Data Management system. Goodbye!")
         break
-print("Thank you for using the Airport Data Management system. Goodbye!")
+    

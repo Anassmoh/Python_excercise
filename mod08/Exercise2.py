@@ -8,5 +8,6 @@ while True:
     else:
         names.add(name)
         print("New name")
-    
-print(names)
+
+for name in names:
+    print(name)
