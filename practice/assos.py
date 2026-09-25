@@ -1,28 +1,42 @@
 class Dog:
-    def __init__(self, name, year_of_birth, bark = "woof"):
+    def __init__(self, name, birth_year, sound="Woof woof"):
         self.name = name
-        self.year_of_birth = year_of_birth
-        self.bark = bark
+        self.birth_year = birth_year
+        self.sound = sound
+
     def bark(self, times):
         for i in range(times):
-            print(f"{self.name} barks {self.bark}")
+            print(self.name + " barks: " + self.sound)
+        return
 
 class Hotel:
-    def _init_(self):
+    def __init__(self):
         self.dogs = []
-    def dog_checking(self, dog):
+
+    def dog_checkin(self, dog):
         self.dogs.append(dog)
+        print(dog.name + " checked in")
+        return
+
     def dog_checkout(self, dog):
-        self.fogs.remove(dog)
+        self.dogs.remove(dog)
+        print(dog.name + " checked out")
+        return
+
     def greet_dogs(self):
         for dog in self.dogs:
             dog.bark(1)
 
-dog1 = Dog("Max", 2020)
-dog2 = Dog("Boi", 2022, "Yip Yip")
+# Main program
+
+dog1 = Dog("Rascal", 2018)
+dog2 = Dog("Boi", 2022, "Yip yip yip")
+
 hotel = Hotel()
 
-hotel.dog_checking(dog1)
-hotel.dog_checking(dog2)
-hotel.greet_dog(dog1)
+hotel.dog_checkin(dog1)
+hotel.dog_checkin(dog2)
+hotel.greet_dogs()
+
 hotel.dog_checkout(dog1)
+hotel.greet_dogs()
