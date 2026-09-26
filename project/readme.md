@@ -2,6 +2,8 @@
 
 **Anass Mohattan**
 
+NB: project 4 is in the side branch adding_class
+
 Cast your magnet and collect metal litter to your net. recycle it manually from the menu, or automatically by quiting or restarting the game.
 
 

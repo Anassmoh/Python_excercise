@@ -13,23 +13,34 @@ class Items:
         self.voltage = voltage
         self.weight = weight
         self.matter = matter
-        Items.item_count += 1
+        if weight == "N/A":
+            Items.item_count += 1
 
 class RoadsideItems:
     def __init__(self):
         self.items = []
+        self.total_weight = 0
+        self.non_magnetic_items = 0
 
     def collectNprint(self, item):
             self.items.append(item)
             print(f"{item.name} added to the net")
+            if item.weight != "N/A":
+                self.total_weight += item.weight
+            else:
+                self.non_magnetic_items += 1
+
 
     def view_inventory(self):
-        if len(self.items) == 1:
-            print(f" has {len(self.items)} item:")
+        if self.non_magnetic_items <= 1:
+            print(f" has {self.non_magnetic_items} non-magnetic item and {self.total_weight}g of Iron:")
         else:
-            print(f" has {len(self.items)} items:")
+            print(f" has {self.non_magnetic_items} non-magnetic items and {self.total_weight}g of Iron:")
         for item in self.items:
-            print(item.name)
+            if item.weight == "N/A":
+                print(f"• {item.name}")
+            else:
+                print(f"• {item.name}: {item.weight}g")
 
 class BeachItems(RoadsideItems):
     def __init__(self):
@@ -37,6 +48,9 @@ class BeachItems(RoadsideItems):
 
     def collectNprint(self, item):
         super().collectNprint(item)
+
+    def total_weight(self, item):
+        super().total_weight(item)
     
     def view_inventory(self):
         super().view_inventory()
@@ -47,6 +61,9 @@ class LakeItems(RoadsideItems):
 
     def collectNprint(self, item):
         super().collectNprint(item)
+
+    def total_weight(self, item):
+        super().total_weight(item)
     
     def view_inventory(self):
         super().view_inventory()
@@ -154,43 +171,43 @@ def main_menu():
 
 def play_menu():
     play_menu_list = ("[1] Roadside", "[2] Beach", "[3] Lake", "[4] Main menu", "[5] Exit")
-    print("\nSELECT A MAP\n")
-    display(play_menu_list)
-    map_option = choose_option()
-    check_input(map_option, play_menu_list)
-    if map_option == "1":
-        while True:
-            cast = input("Press ENTER to cast your magnet or type any other key to change the map: ")
-            if cast == "":
-                litter = magnet_fishing()
-                roadside_net.collectNprint(litter)
-            else:
-                break
-        play_menu()
-    elif map_option == "2":
-        while True:
-            cast = input("Press ENTER to cast your magnet or type any other key to change the map: ")
-            if cast == "":
-                litter = magnet_fishing()
-                beach_net.collectNprint(litter)
-            else:
-                break
-        play_menu()    
-    elif map_option == "3":
-        while True:
-            cast = input("Press ENTER to cast your magnet or type any other key to change the map: ")
-            if cast == "":
-                litter = magnet_fishing()
-                lake_net.collectNprint(litter)
-            else:
-                break 
-        play_menu()
-    elif map_option == "4":
-        #TODO: this menu goes empty 
-        main_menu()
-    elif map_option == "5" or map_option == "lopeta":
-        game_over = quit()
-        return game_over
+    while True:
+        print("\nSELECT A MAP\n")
+        display(play_menu_list)
+        map_option = choose_option()
+        check_input(map_option, play_menu_list)
+        if map_option == "1":
+            while True:
+                cast = input("Press ENTER to cast your magnet or type any other key to change the map: ")
+                if cast == "":
+                    litter = magnet_fishing()
+                    roadside_net.collectNprint(litter)
+                else:
+                    break
+        elif map_option == "2":
+            while True:
+                cast = input("Press ENTER to cast your magnet or type any other key to change the map: ")
+                if cast == "":
+                    litter = magnet_fishing()
+                    beach_net.collectNprint(litter)
+                else:
+                    break
+        elif map_option == "3":
+            while True:
+                cast = input("Press ENTER to cast your magnet or type any other key to change the map: ")
+                if cast == "":
+                    litter = magnet_fishing()
+                    lake_net.collectNprint(litter)
+                else:
+                    break
+        elif map_option == "4":
+            #TODO: this menu goes empty
+            main_menu()
+            break
+            
+        elif map_option == "5" or map_option == "lopeta":
+            game_over = quit()
+            return game_over
 
 def inventory_menu():
     inventory_menu_list = ("[1] All the nets ", "[2] Roadside net", "[3] Beach net", "[4] Lake net", "[5] Main menu", "[6] Exit") 
@@ -199,43 +216,49 @@ def inventory_menu():
     inventory_option = choose_option()
     check_input(inventory_option, inventory_menu_list)
     if inventory_option == "1" :
-        print(f"\nYou collected a total of {Items.item_count} items:\n")
-        if len(roadside_net.items) == 0:
-            print("Roadside net is Empty")
+        if Items.item_count <= 1:
+            print(f"\nYou collected in total {Items.item_count} non-magnetic item and {roadside_net.total_weight + beach_net.total_weight + lake_net.total_weight }g of Iron:")
         else:
-            print(end ='' "Roadside net")
+            print(f"\nYou collected in total {Items.item_count} non-magnetic items and {roadside_net.total_weight + beach_net.total_weight + lake_net.total_weight }g of Iron:")
+
+        if len(roadside_net.items) == 0:
+            print("\nRoadside net is Empty")
+        else:
+            print(end =''"\nRoadside net")
             roadside_net.view_inventory()
                 
         if len(beach_net.items) == 0:
-            print("Beach net is Empty")
+            print("\nBeach net is Empty")
         else:
-            print(end ='' "Beach net")
+            print(end =''"\nBeach net")
             beach_net.view_inventory()
 
         if len(lake_net.items) == 0:
-            print("Lake net is Empty")
+            print("\nLake net is Empty")
         else:
-            print(end ='' "Lake net")
+            print(end =''"\nLake net")
             lake_net.view_inventory()
 
     elif inventory_option == "2":
-        if len(roadside_net) == 0:
-            print("Your roadside net is empty")
+        if len(roadside_net.items) == 0:
+            print("\nYour roadside net is empty")
         else:
+            print(end=''"\nRoadside net ")
             roadside_net.view_inventory()
-            print(" roadside net:\n")
+
     elif inventory_option == "3":
-        if len(beach_net) == 0:
+        if len(beach_net.items) == 0:
             print("Your beach net is empty")
         else:
+            print(end=''"\nBeach net ")
             beach_net.view_inventory()
-            print(" beach net:\n")
     elif inventory_option == "4":
-        if len(lake_net) == 0:
+        if len(lake_net.items) == 0:
             print("Your lake net is empty")
         else:
+            print(end=''"\nLake net:")
             lake_net.view_inventory()
-            print(" lake net:\n")
+            
     elif inventory_option == "5":
         main_menu()
     elif inventory_option == "6" or inventory_option == "lopeta":
@@ -282,7 +305,6 @@ def setting_menu():
 roadside_net = RoadsideItems()
 beach_net = BeachItems()
 lake_net = LakeItems()
-
 
 name, age = name_age()
 
