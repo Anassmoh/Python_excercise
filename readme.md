@@ -29,7 +29,10 @@ I finished all 4 exercices
 I finished all 4 exercices
 
 ## module_10
-I ..
+I finished all 4 exercices
+
+## module_11
+I finished both exercices
 
 ## project_1
 created the folder and made the name and age programm
@@ -37,5 +40,5 @@ created the folder and made the name and age programm
 added the manu and some commands.
 ## project_3
 added some functions and commands.
-## project_4   (side branch adding_class)
-added Class.
+## project_4 (side branch adding_class)
+added class.
