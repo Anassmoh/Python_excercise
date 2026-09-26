@@ -2,41 +2,74 @@
 #TODO: can have a list and for loop to display list contents
 #TODO: use assosiation or inheritence to append stuff in list
 #TODO: use Class variable to see how many items have been created
-class AllNet:
+class Items:
     item_count = 0
     all_net = []
-    def __init__(self, name, voltage):
-        AllNet.all_net.append(self)
+    def __init__(self, name, voltage, weight, matter):
+        
         self.name = name
         self.voltage = voltage
-        self.weight = 0
-        self.matter = 0
+        self.weight = weight
+        self.matter = matter
+        Items.all_net.append(self)
+        Items.item_count += 1
 
-    def collect_print(self):
-        print(f"{self.name}: {self.voltage} {self.weight} {self.matter}")
+class RoadsideItems:
+    def __init__(self):
+        self.items = []
 
-class RoadsideNet(AllNet):
-    def __init__(self, name, voltage,):
-        super().__init__(name, voltage)
+    def collectNprint(self, item):
+            self.items.append(item)
+            print(f"{item.name} added to the net")
 
-class BeachNet(AllNet):
-    def __init__(self, name, voltage,):
-        super().__init__(name, voltage)
+    def view_inventory(self):
+        for item in self.items:
+            print(item.name)
 
-class LakeNet(AllNet):
-    def __init__(self, name, voltage,):
-        super().__init__(name, voltage)
+class BeachItems(RoadsideItems):
+    def __init__(self):
+        super().__init__()
+
+    def collectNprint(self, item):
+        super().collectNprint(item)
+    
+    def view_inventory(self):
+        super().view_inventory()
+
+class LakeItems(RoadsideItems):
+    def __init__(self):
+        super().__init__()
+
+    def collectNprint(self, item):
+        super().collectNprint(item)
+    
+    def view_inventory(self):
+        super().view_inventory()
+
+item1 = Items("ring", 130, 0, 0)
+item2 = Items("tin", 10, 0, 0)
+item3 = Items("nail", 41, 0, 0)
+
+roadside_net = RoadsideItems()
+beach_net = BeachItems()
+lake_net = LakeItems()
 
 
-roadside_net, beach_net, lake_net = [], [], []
 
-roadside_net.append(RoadsideNet("ring", 130))
-roadside_net.append(RoadsideNet("tin", 10))
-roadside_net.append(RoadsideNet("nail", 41))
+roadside_net.collectNprint(item1)
+roadside_net.collectNprint(item2)
+beach_net.collectNprint(item2)
+lake_net.collectNprint(item3)
 
-print(AllNet.item_count)
-for item in roadside_net:
-    item.collect_print()
 
-for item in AllNet.all_net:
-    item.collect_print()
+roadside_net.view_inventory()
+beach_net.view_inventory()
+lake_net.view_inventory()
+
+
+print(Items.item_count)
+for item in  Items.all_net:
+    print(item.name)
+
+
+
