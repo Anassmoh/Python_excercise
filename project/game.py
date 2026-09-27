@@ -1,8 +1,10 @@
 import time
 import random
 from classes.items_classes.items import Items, RoadsideItems, BeachItems, LakeItems
-from functions.input_check import name_age, check_input
-from functions.Menu_printNchoose import display, choose_option
+from functions.user_bridge import name_age
+from functions.menu_select import display, choose_option, check_input
+
+
 
 main_menu_list = ["[1] Play", "[2] Inventory", "[3] Settings", "[4] Exit"]
 name, age = name_age()
@@ -21,6 +23,8 @@ def quit():
         game_over = False
     return game_over
 
+
+
 def add_restart():
     if "[4] Restart" not in main_menu_list:
         main_menu_list.insert(3, "[4] Restart")
@@ -34,44 +38,7 @@ def restart_game():
         beach_net.items.clear()
         lake_net.items.clear()
         print("All the metal have been recycled, Goodbye!")
-        main_menu_list = ["[1] Play", "[2] Inventory", "[3] Settings", "[4] Exit"]
     return restart
-
-
-
-
-
-
-def magnet_fishing():
-            main_menu_list = add_restart()
-            for _ in range(random.randint(3,8)):
-                time.sleep(0.5)
-                print("\n0 μV")
-            voltage = random.randint(1,150)
-            for n in range(4):
-                time.sleep(0.2)
-                print(f"\n{voltage + random.randint(-2,2)} μV")
-            magnetude = random.choice([True,False])
-            if magnetude == True:
-                weight = voltage * 1.5
-                matter = "Iron"
-                name = input(f"\n{voltage} μV! {voltage} μV! {voltage} μV!\n\nYou found {weight}g of {matter}, name the item and press ENTER to collect it to the net: ")
-                litter = Items(name, voltage, weight, matter)
-            else:
-                weight = "N/A"
-                if 0 < voltage <= 50:
-                    matter = random.choice(["aluminum", "brass"])
-                    name = input(f"\n{voltage} μV! {voltage} μV! {voltage} μV!\n\nYou found some {matter}, name the item and press ENTER to collect it to the net: ")
-                    litter = Items(name, voltage, weight, matter)
-                elif 50 < voltage <= 100:
-                    matter = random.choice(["silver", "copper"])
-                    name = input(f"\n{voltage} μV! {voltage} μV! {voltage} μV!\n\nYou found some {matter}, name the item and press ENTER to collect it to the net: ")
-                    litter = Items(name, voltage, weight, matter)
-                else:                            
-                    matter = "gold"
-                    name = input(f"\n{voltage} μV! {voltage} μV! {voltage} μV!\n\nCongratulations! You found some {matter}, name the item and press ENTER to collect it to the net: ")
-                    litter = Items(name, voltage, weight, matter)    
-            return litter
 
 def main_menu():
     print("\nMAIN MENU\n")
@@ -80,44 +47,6 @@ def main_menu():
     check_input(main_menu_option, main_menu_list)
     return main_menu_option
 
-def play_menu():
-    play_menu_list = ("[1] Roadside", "[2] Beach", "[3] Lake", "[4] Main menu", "[5] Exit")
-    while True:
-        print("\nSELECT A MAP\n")
-        display(play_menu_list)
-        map_option = choose_option()
-        check_input(map_option, play_menu_list)
-        if map_option == "1":
-            while True:
-                cast = input("Press ENTER to cast your magnet or type any other key to change the map: ")
-                if cast == "":
-                    litter = magnet_fishing()
-                    roadside_net.collectNprint(litter)
-                else:
-                    break
-        elif map_option == "2":
-            while True:
-                cast = input("Press ENTER to cast your magnet or type any other key to change the map: ")
-                if cast == "":
-                    litter = magnet_fishing()
-                    beach_net.collectNprint(litter)
-                else:
-                    break
-        elif map_option == "3":
-            while True:
-                cast = input("Press ENTER to cast your magnet or type any other key to change the map: ")
-                if cast == "":
-                    litter = magnet_fishing()
-                    lake_net.collectNprint(litter)
-                else:
-                    break
-        elif map_option == "4":
-            #TODO: this menu goes empty
-            break
-            
-        elif map_option == "5" or map_option == "lopeta":
-            game_over = quit()
-            return game_over
 
 def inventory_menu():
     inventory_menu_list = ("[1] All the nets ", "[2] Roadside net", "[3] Beach net", "[4] Lake net", "[5] Main menu", "[6] Exit") 
@@ -224,6 +153,75 @@ def setting_menu():
         game_over = quit()
         return game_over
 
+def magnet_fishing():
+            main_menu_list = add_restart()
+            for _ in range(random.randint(3,8)):
+                time.sleep(0.5)
+                print("\n0 μV")
+            voltage = random.randint(1,150)
+            for n in range(4):
+                time.sleep(0.2)
+                print(f"\n{voltage + random.randint(-2,2)} μV")
+            magnetude = random.choice([True,False])
+            if magnetude == True:
+                weight = voltage * 1.5
+                matter = "Iron"
+                name = input(f"\n{voltage} μV! {voltage} μV! {voltage} μV!\n\nYou found {weight}g of {matter}, name the item and press ENTER to collect it to the net: ")
+                litter = Items(name, voltage, weight, matter)
+            else:
+                weight = "N/A"
+                if 0 < voltage <= 50:
+                    matter = random.choice(["aluminum", "brass"])
+                    name = input(f"\n{voltage} μV! {voltage} μV! {voltage} μV!\n\nYou found some {matter}, name the item and press ENTER to collect it to the net: ")
+                    litter = Items(name, voltage, weight, matter)
+                elif 50 < voltage <= 100:
+                    matter = random.choice(["silver", "copper"])
+                    name = input(f"\n{voltage} μV! {voltage} μV! {voltage} μV!\n\nYou found some {matter}, name the item and press ENTER to collect it to the net: ")
+                    litter = Items(name, voltage, weight, matter)
+                else:                            
+                    matter = "gold"
+                    name = input(f"\n{voltage} μV! {voltage} μV! {voltage} μV!\n\nCongratulations! You found some {matter}, name the item and press ENTER to collect it to the net: ")
+                    litter = Items(name, voltage, weight, matter)    
+            return litter
+
+def play_menu():
+    play_menu_list = ("[1] Roadside", "[2] Beach", "[3] Lake", "[4] Main menu", "[5] Exit")
+    while True:
+        print("\nSELECT A MAP\n")
+        display(play_menu_list)
+        map_option = choose_option()
+        check_input(map_option, play_menu_list)
+        if map_option == "1":
+            while True:
+                cast = input("Press ENTER to cast your magnet or type any other key to change the map: ")
+                if cast == "":
+                    litter = magnet_fishing()
+                    roadside_net.collectNprint(litter)
+                else:
+                    break
+        elif map_option == "2":
+            while True:
+                cast = input("Press ENTER to cast your magnet or type any other key to change the map: ")
+                if cast == "":
+                    litter = magnet_fishing()
+                    beach_net.collectNprint(litter)
+                else:
+                    break
+        elif map_option == "3":
+            while True:
+                cast = input("Press ENTER to cast your magnet or type any other key to change the map: ")
+                if cast == "":
+                    litter = magnet_fishing()
+                    lake_net.collectNprint(litter)
+                else:
+                    break
+        elif map_option == "4":
+            #TODO: this menu goes empty
+            break
+            
+        elif map_option == "5" or map_option == "lopeta":
+            game_over = quit()
+            return game_over
 
 
 
@@ -252,7 +250,11 @@ while int(age) >= 12:
     if game_over == True:
         break        
     elif restart == "yes":
+        main_menu_list = ["[1] Play", "[2] Inventory", "[3] Settings", "[4] Exit"]
         name, age = name_age()
+        
+#TODO :need to fix the restart
 else: 
     if int(age) < 12:
         print("Your age doesn't meet the minimum required, the game will exit immediately!")
+

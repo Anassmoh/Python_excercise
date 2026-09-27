@@ -16,11 +16,3 @@ def name_age():
             break      
     return name, age
 
-def check_input(option, list):
-    if option.isdigit():
-        if int(option) > len(list) or int(option) < 0:
-            print("Please select a valid option")
-    elif option.isalpha():
-        if option != "lopeta" or option != "":
-            print("Please select a valid option")
-    return
