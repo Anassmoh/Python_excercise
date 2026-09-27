@@ -1,37 +1,15 @@
 import time
 import random
 from classes.items_classes.items import Items, RoadsideItems, BeachItems, LakeItems
+from functions.input_check import name_age, check_input
+from functions.Menu_printNchoose import display, choose_option
 
-def name_age():
-    while True:
-        name = input("Enter your name: ")    
-        if name.isalpha():
-            name = name[0].upper() + name[1:].lower()
-            break
-        else:
-            print("Please Enter a valid name.\n") 
-    while True:
-        age = input("Enter your age: ")
-        if age.isalpha() or age == "":
-            print("Please enter a valid age.\n")
-        elif int(age) <= 0:
-            print("Please enter a valid age.\n")
-        else:
-            break      
-    return name, age
+main_menu_list = ["[1] Play", "[2] Inventory", "[3] Settings", "[4] Exit"]
+name, age = name_age()
+roadside_net = RoadsideItems()
+beach_net = BeachItems()
+lake_net = LakeItems()
 
-def choose_option():
-    option = input("\nSelect an option or type 'lopeta' to exit: ")
-    return option
-
-def check_input(option, list):
-    if option.isdigit():
-        if int(option) > len(list) or int(option) < 0:
-            print("Please select a valid option")
-    elif option.isalpha():
-        if option != "lopeta" or option != "":
-            print("Please select a valid option")
-    return
 
 def quit():
     game_over = input('Are you sure you want to quit?\nType "yes" to confirm or any other key to resume: ')
@@ -59,17 +37,10 @@ def restart_game():
         main_menu_list = ["[1] Play", "[2] Inventory", "[3] Settings", "[4] Exit"]
     return restart
 
-def display(menu_list):
-    for menu in menu_list:
-        print(menu)
-    return
 
-def main_menu():
-    print("\nMAIN MENU\n")
-    display(main_menu_list)
-    main_menu_option = choose_option()
-    check_input(main_menu_option, main_menu_list)
-    return main_menu_option
+
+
+
 
 def magnet_fishing():
             main_menu_list = add_restart()
@@ -102,6 +73,12 @@ def magnet_fishing():
                     litter = Items(name, voltage, weight, matter)    
             return litter
 
+def main_menu():
+    print("\nMAIN MENU\n")
+    display(main_menu_list)
+    main_menu_option = choose_option()
+    check_input(main_menu_option, main_menu_list)
+    return main_menu_option
 
 def play_menu():
     play_menu_list = ("[1] Roadside", "[2] Beach", "[3] Lake", "[4] Main menu", "[5] Exit")
@@ -249,13 +226,7 @@ def setting_menu():
 
 
 
-main_menu_list = ["[1] Play", "[2] Inventory", "[3] Settings", "[4] Exit"]
 
-roadside_net = RoadsideItems()
-beach_net = BeachItems()
-lake_net = LakeItems()
-    
-name, age = name_age()
 
 # TODO: this breaks when age string
 while int(age) >= 12:

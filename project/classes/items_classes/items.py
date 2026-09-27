@@ -48,10 +48,6 @@ class BeachItems(RoadsideItems):
     def collectNprint(self, item):
         super().collectNprint(item)
         return
-
-    def total_weight(self, item):
-        super().total_weight(item)
-        return
     
     def view_inventory(self):
         super().view_inventory()
@@ -64,10 +60,6 @@ class LakeItems(RoadsideItems):
 
     def collectNprint(self, item):
         super().collectNprint(item)
-        return
-
-    def total_weight(self, item):
-        super().total_weight(item)
         return
     
     def view_inventory(self):
