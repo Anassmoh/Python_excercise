@@ -1,43 +1,65 @@
 
 class Items:
-    item_count = 0
+    all_count = 0
+    
     def __init__(self, name, voltage, weight, matter):
-        
         self.name = name
         self.voltage = voltage
         self.weight = weight
         self.matter = matter
-        if weight == "N/A":
-            Items.item_count += 1
+        Items.all_count += 1
         return
-
+        
 class RoadsideItems:
     def __init__(self):
         self.items = []
-        self.total_weight = 0
-        self.non_magnetic_items = 0
+        self.items_count = 0
+        self.aluminium_weight = 0
+        self.aluminium_price = 0
+        self.brass_weight = 0
+        self.brass_price  = 0
+        self.copper_weight = 0
+        self.copper_price  = 0
+        self.iron_weight = 0
+        self.iron_price = 0
+        self.silver_weight = 0
+        self.silver_price = 0
+        self.gold_weight = 0
+        self.gold_price = 0
         return
 
     def collectNprint(self, item):
             self.items.append(item)
-            print(f"{item.name} added to the net")
-            if item.weight != "N/A":
-                self.total_weight += item.weight
-            else:
-                self.non_magnetic_items += 1
-                return
+            print(f"{item.name} is added to the net.")
+            self.items_count += 1
+            if item.matter == "aluminium":
+                self.aluminium_weight += item.weight
+                self.aluminium_price += (item.weight * 0.018)
+            elif item.matter == "brass":
+                self.brass_weight += item.weight
+                self.brass_price += (item.weight * 0.066)
+            elif item.matter == "copper":
+                self.copper_weight += item.weight
+                self.copper_price += (item.weight * 0.076)
+            elif item.matter == "iron":
+                self.iron_weight += item.weight
+                self.iron_price += (item.weight * 0.002)
+            elif item.matter == "silver":
+                self.silver_weight += item.weight
+                self.silver_price += (item.weight * 11)
+            elif item.matter == "gold":
+                self.gold_weight += item.weight
+                self.gold_price += (item.weight * 720)
+            return
 
 
     def view_inventory(self):
-        if self.non_magnetic_items <= 1:
-            print(f" has {self.non_magnetic_items} non-magnetic item and {self.total_weight}g of Iron:")
+        if self.items_count <= 1:
+            print(f" has {self.items_count} item:")
         else:
-            print(f" has {self.non_magnetic_items} non-magnetic items and {self.total_weight}g of Iron:")
+            print(f" has {self.items_count} items:")
         for item in self.items:
-            if item.weight == "N/A":
-                print(f"• {item.name}")
-            else:
-                print(f"• {item.name}: {item.weight}g")
+                print(f" •{item.name}: {item.weight}g")
         return
 
 class BeachItems(RoadsideItems):

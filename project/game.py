@@ -1,6 +1,7 @@
 import time
 import random
 from classes.items_classes.items import Items, RoadsideItems, BeachItems, LakeItems
+from functions.loading import measuring, processing, manual_scrap, demagnefy
 from functions.check_input import name_age
 from functions.menu_select import display, choose_option, check_input
 
@@ -49,47 +50,55 @@ def play_menu():
         elif map_option == "5" or map_option == "lopeta":
             game_over = quit()
             return game_over
-
+        
 def magnet_fishing():
-            add_restart()
-            for i in range(random.randint(4,12)):
-                print(f"\r  μV", end='')
-                time.sleep(0.5)
-                print(f"\r0 μV", end='')
-                time.sleep(0.5)
-            voltage = random.randint(1,150)
-            for n in range(8):
-                time.sleep(0.3)
-                print(f"\r{voltage + random.randint(-2,2)} μV", end='')
-            for n in range(8):
-                print(f"\r      !", end='')
-                time.sleep(0.1)
-                print(f"\r{voltage} μV", end='')
-                time.sleep(0.2)
-            magnetude = random.choice([True,False])
-            if magnetude == True:
-                weight = voltage * 1.5
-                matter = "Iron"
-                name = input(f"\nYou found {weight}g of {matter}, name the item and press ENTER to collect it to the net: ")
-                litter = Items(name, voltage, weight, matter)
-            else:
-                weight = "N/A"
-                if 0 < voltage <= 50:
-                    matter = random.choice(["aluminum", "brass"])
-                    name = input(f"\nYou found some {matter}, name the item and press ENTER to collect it to the net: ")
-                    litter = Items(name, voltage, weight, matter)
-                elif 50 < voltage <= 100:
-                    matter = random.choice(["silver", "copper"])
-                    name = input(f"\nYou found some {matter}, name the item and press ENTER to collect it to the net: ")
-                    litter = Items(name, voltage, weight, matter)
-                else:                            
-                    matter = "gold"
-                    name = input(f"\nCongratulations! You found some {matter}, name the item and press ENTER to collect it to the net: ")
-                    litter = Items(name, voltage, weight, matter)    
-            return litter
+    add_restart()
+    for i in range(random.randint(4,9)):
+        print(f"\r  μV", end='')
+        time.sleep(0.5)
+        print(f"\r0 μV", end='')
+        time.sleep(0.5)
+    voltage = random.randint(1,150)
+    for n in range(8):
+        time.sleep(0.3)
+        print(f"\r{voltage + random.randint(-2,2)} μV", end='')
+    for n in range(8):
+        print(f"\r      !", end='')
+        time.sleep(0.1)
+        print(f"\r{voltage} μV", end='')
+        time.sleep(0.2)
+    print(f"              ")
+    magnetude = random.choice([True,False])
+    if magnetude == True:
+        weight = voltage * 1.5
+        matter = "Iron"
+        demagnefy()
+        measuring()
+        print(f"\r{weight:.1f}g                                  ", end='')
+        name = input(f"\nYou found {weight:.1f}g of {matter}, name the item and press ENTER to collect it to the net: ")
+        litter = Items(name, voltage, weight, matter)
+    else:
+        weight = voltage * 0.02
+        if 0 < voltage <= 100:
+            weight = voltage * 1.32
+            matter = random.choice(["aluminium", "brass", "copper"])
+            manual_scrap()
+            measuring()
+            print(f"\r{weight:.1f}g               ", end='')
+            name = input(f"\nYou found {weight:.1f}g of {matter}, name the item and press ENTER to collect it to the net: ")
+            litter = Items(name, voltage, weight, matter)
+        else:               
+            weight = voltage * 0.02             
+            matter = random.choice(["silver", "gold"])
+            manual_scrap()
+            measuring()
+            print(f"\r{weight:.1f}g                      ", end='')
+            name = input(f"\nYou found {weight:.1f}g of {matter}, name the item and press ENTER to collect it to the net: ")
+            litter = Items(name, voltage, weight, matter)    
+    return litter
 
 def add_restart():
-    if "[4]► Restart" not in main_menu_list:
+    if " [4]► Restart" not in main_menu_list:
         main_menu_list.insert(3, " [4]► Restart")
         main_menu_list[4] = " [5]► Exit"
     return main_menu_list
@@ -101,42 +110,42 @@ def inventory_menu():
     inventory_option = choose_option()
     check_input(inventory_option, inventory_menu_list)
     if inventory_option == "1" :
-        if Items.item_count <= 1:
-            print(f"\nYou collected in total {Items.item_count} non-magnetic item and {roadside_net.total_weight + beach_net.total_weight + lake_net.total_weight }g of Iron:")
+        if Items.all_count <= 1:
+            print(f"\nYou collected {Items.all_count} item in total:")
         else:
-            print(f"\nYou collected in total {Items.item_count} non-magnetic items and {roadside_net.total_weight + beach_net.total_weight + lake_net.total_weight }g of Iron:")
-        if len(roadside_net.items) == 0:
-            print("\n➢Roadside net is Empty")
+            print(f"\nYou collected {Items.all_count} items in total:")
+        if roadside_net.items_count == 0:
+            print("\n➢ Roadside net is Empty.")
         else:
-            print(end =''"\n➢Roadside net")
+            print(end =''"\n➢ Roadside net")
             roadside_net.view_inventory()              
-        if len(beach_net.items) == 0:
-            print("\n➢Beach net is Empty")
+        if beach_net.items_count == 0:
+            print("\n➢ Beach net is Empty")
         else:
-            print(end =''"\n➢Beach net")
+            print(end =''"\n➢ Beach net")
             beach_net.view_inventory()
-        if len(lake_net.items) == 0:
-            print("\n➢Lake net is Empty")
+        if lake_net.items_count == 0:
+            print("\n➢ Lake net is Empty")
         else:
-            print(end =''"\n➢Lake net")
+            print(end =''"\n➢ Lake net")
             lake_net.view_inventory()
     elif inventory_option == "2":
-        if len(roadside_net.items) == 0:
-            print("\n➢Roadside net is empty")
+        if roadside_net.items_count == 0:
+            print("\n➢ Roadside net is empty.")
         else:
-            print(end=''"\n➢Roadside net ")
+            print(end=''"\n➢ Roadside net ")
             roadside_net.view_inventory()
     elif inventory_option == "3":
-        if len(beach_net.items) == 0:
-            print("➢Beach net is empty")
+        if beach_net.items_count == 0:
+            print("➢ Beach net is empty.")
         else:
-            print(end=''"\n➢Beach net ")
+            print(end=''"\n➢ Beach net ")
             beach_net.view_inventory()
     elif inventory_option == "4":
-        if len(lake_net.items) == 0:
-            print("➢Lake net is empty")
+        if lake_net.items_count == 0:
+            print("➢ Lake net is empty.")
         else:
-            print(end=''"\n➢Lake net:")
+            print(end=''"\n➢ Lake net:")
             lake_net.view_inventory()
     elif inventory_option == "5":
         pass
@@ -144,54 +153,85 @@ def inventory_menu():
         game_over = quit()
         return game_over
 
+def sell(zone):
+    price = zone.aluminium_price + zone.brass_price + zone.copper_price + zone.iron_price + zone.silver_price + zone.gold_price
+    Items.all_count -= zone.items_count
+    zone.items.clear()
+    zone.items_count = 0
+    zone.aluminium_weight = 0
+    zone.aluminium_price = 0
+    zone.brass_weight = 0
+    zone.brass_price  = 0
+    zone.copper_weight = 0
+    zone.copper_price  = 0
+    zone.iron_weight = 0
+    zone.iron_price = 0
+    zone.silver_weight = 0
+    zone.silver_price = 0
+    zone.gold_weight = 0
+    zone.gold_price = 0
+    return price
+
 def recycle_menu():
     setting_menu_list = (" [1]► Recycle all", " [2]► Recycle a net", " [3]► Main menu", " [4]► Exit")
     print("\n◈ RECYCLING CENTER ◈\n")
     display(setting_menu_list)
     setting_option = choose_option()
     check_input(setting_option, setting_menu_list)
-    if setting_option == "1":
-        roadside_net.items.clear()
-        beach_net.items.clear()
-        lake_net.items.clear()
-        Items.item_count = 0
-        roadside_net.total_weight = 0
-        beach_net.total_weight = 0
-        lake_net.total_weight = 0
-        print("\nAll the metal has been recycled, Well done!")
+    if setting_option == "1" and Items.all_count != 0:
+        roadside_income = sell(roadside_net)
+        beach_income = sell(beach_net)
+        lake_income = sell(lake_net)
+        total_income = roadside_income + beach_income + lake_income
+        processing()
+        if total_income >= 1:
+            print(f"\rWell done! You've made {total_income:.1f} Markka.")
+        else:
+            print(f"\rThe worth need to be at least 1 Markka.")
+        time.sleep(2)
     elif setting_option == "2":
         recycle_menu_list = (" [1]► Recycle roadside net", " [2]► Recycle beach net", " [3]► Recycle lake net", " [4]► Main menu", " [5]► Exit")
         print("\n◈ RECYCLING CENTER ◈\n")
         display(recycle_menu_list)
         recycle_option = choose_option()
         check_input(recycle_option, recycle_menu_list)
-        if recycle_option == "1":
-            roadside_net.items.clear()
-            Items.item_count -= roadside_net.non_magnetic_items
-            roadside_net.non_magnetic_items = 0
-            roadside_net.total_weight = 0
-            print("The roadside net's metals have been recycled, Well done!")
-        elif recycle_option == "2":
-            beach_net.items.clear()
-            Items.item_count -= beach_net.non_magnetic_items
-            beach_net.non_magnetic_items = 0
-            beach_net.total_weight = 0
-            print("The beach net's metals have been recycled, Well done!")
-        elif recycle_option == "3":
-            lake_net.items.clear()
-            Items.item_count -= lake_net.non_magnetic_items
-            lake_net.non_magnetic_items = 0
-            lake_net.total_weight = 0
-            print("The lake net's metals have been recycled, Well done!")
+        if recycle_option == "1" and roadside_net.items_count != 0:
+            roadside_income = sell(roadside_net)
+            processing()
+            if roadside_income >= 1:
+                print(f"\rWell done! You've made {roadside_income:.1f} Markka.")
+            else:
+                print(f"\rThe worth need to be at least 1 Markka.")
+            time.sleep(2)
+        elif recycle_option == "2" and roadside_net.items_count != 0:
+            beach_income = sell(beach_net)
+            processing()
+            if beach_income >= 1:
+                print(f"\rWell done! You've made {beach_income:.1f} Markka.")
+            else:
+                print(f"\rThe worth need to be at least 1 Markka.")
+            time.sleep(2)
+        elif recycle_option == "3" and roadside_net.items_count != 0:
+            lake_income = sell(lake_net)
+            processing()
+            if lake_income >= 1:
+                print(f"\rWell done! You've made {lake_income:.1f} Markka.")
+            else:
+                print(f"\rThe worth need to be at least 1 Markka.")
+            time.sleep(2)
         elif recycle_option == "4":
             pass
         elif recycle_option == "5" or recycle_option == "lopeta":
             game_over = quit()
+        else:
+            print("\nThere is nothing to recycle in this net.")
     elif setting_option== "3":
         pass
     elif setting_option == "4" or setting_option == "lopeta":
         game_over = quit()
         return game_over
+    else:
+        print("\nThere is no items to recycle.")
 
 def restart_game():
     restart = input('The progress will be lost, are you sure you want to restart?\nType "yes" to confirm or any other key to resume: ')
@@ -212,6 +252,8 @@ def quit():
         game_over = False
     return game_over
 
+
+
 name, age = name_age()
 roadside_net = RoadsideItems()
 beach_net = BeachItems()
@@ -229,7 +271,7 @@ while int(age) >= 12:
         elif main_menu_option == "3":
             game_over = recycle_menu()
         elif main_menu_option == "4":
-            if "[4]► Restart" in main_menu_list:
+            if " [4]► Restart" in main_menu_list:
                 restart = restart_game()
                 if restart == "yes":
                     break
@@ -240,9 +282,8 @@ while int(age) >= 12:
     if game_over == True:
         break        
     elif restart == "yes":
-        main_menu_list = [" [1]► Play", " [2]► Inventory", " [3]► Settings", " [4]► Exit"]
+        main_menu_list = [" [1]► Play", " [2]► Inventory", " [3]► Recycle", " [4]► Exit"]
         name, age = name_age()
 else: 
     if int(age) < 12:
         print("Your age doesn't meet the minimum required, the game will exit immediately!")
-
