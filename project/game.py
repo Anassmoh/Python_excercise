@@ -5,7 +5,7 @@ from functions.check_input import name_age
 from functions.menu_select import display, choose_option, check_input
 
 main_menu_list = [" [1]► Play", " [2]► Inventory", " [3]► Recycle", " [4]► Exit"]
-
+#TODO: check inout for naming the littter after catching
 def main_menu():
     print("\n◈ MAIN MENU ◈\n")
     display(main_menu_list)
@@ -61,16 +61,15 @@ def magnet_fishing():
             for n in range(8):
                 time.sleep(0.3)
                 print(f"\r{voltage + random.randint(-2,2)} μV", end='')
+            for n in range(8):
+                print(f"\r      !", end='')
+                time.sleep(0.1)
+                print(f"\r{voltage} μV", end='')
+                time.sleep(0.2)
             magnetude = random.choice([True,False])
             if magnetude == True:
                 weight = voltage * 1.5
                 matter = "Iron"
-                for n in range(8):
-                    print(f"\r      !", end='')
-                    time.sleep(0.2)
-                    print(f"\r{voltage} μV", end='')
-                    time.sleep(0.2)
-                    
                 name = input(f"\nYou found {weight}g of {matter}, name the item and press ENTER to collect it to the net: ")
                 litter = Items(name, voltage, weight, matter)
             else:
