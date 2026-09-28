@@ -2,11 +2,13 @@
 
 **Anass Mohattan**
 
+Anass Mohattan
+
 project\classes\items_classes\items has all the classes for the item collection (will be explained thoroughly before project submition)
 
 project\functions\menu_select contains functions to display menus, check the input menu choice, and return it to further navigate the menu
 
-project\functions\user_bridge contains a function that check that the name and age have been properly entered, age as a positive naturl number and name as alphabet combination.
+project\functions\check_input contains a function that check that the name and age have been properly entered, age as a positive naturl number and name as alphabet combination.
 
 game.py is where the actual game resides. it also contains some function as it's very difficult to move all the functions to a different file without having circular import issues. (is a TODO:)
 

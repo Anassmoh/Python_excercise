@@ -1,4 +1,3 @@
-
 def display(menu_list):
     for menu in menu_list:
         print(menu)
