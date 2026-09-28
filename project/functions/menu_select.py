@@ -12,6 +12,7 @@ def check_input(option, list):
         if int(option) > len(list) or int(option) < 0:
             print("Please select a valid option")
     elif option.isalpha():
-        if option != "lopeta" or option != "":
+        if option != "lopeta" and option != "":
             print("Please select a valid option")
     return
+

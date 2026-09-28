@@ -236,10 +236,11 @@ def recycle_menu():
 def restart_game():
     restart = input('The progress will be lost, are you sure you want to restart?\nType "yes" to confirm or any other key to resume: ')
     if restart.lower() == "yes":
-        roadside_net.items.clear() 
-        beach_net.items.clear()
-        lake_net.items.clear()
+        #TODO:clear the things decide how
         print("All the metal have been recycled, Goodbye!")
+        restart = True
+    else:
+        restart = False
     return restart
 
 def quit():
@@ -262,6 +263,7 @@ lake_net = LakeItems()
 while int(age) >= 12:
     print(f"\n{name}, {age} years old.\n\nHello {name}, welcome to MagNet!")
     game_over = False
+    restart = False
     while not game_over:
         main_menu_option = main_menu()
         if main_menu_option == "1":
@@ -273,17 +275,17 @@ while int(age) >= 12:
         elif main_menu_option == "4":
             if " [4]► Restart" in main_menu_list:
                 restart = restart_game()
-                if restart == "yes":
-                    break
+                if restart == True:
+                    game_over = True
             else:
-                game_over = quit()
+                game_over = quit() 
         elif (main_menu_option == "5" and " [4]► Restart" in main_menu_list) or main_menu_option == "lopeta":
             game_over = quit()
-    if game_over == True:
-        break        
-    elif restart == "yes":
+    if restart == True:
         main_menu_list = [" [1]► Play", " [2]► Inventory", " [3]► Recycle", " [4]► Exit"]
         name, age = name_age()
+    elif game_over == True:
+        break
 else: 
     if int(age) < 12:
         print("Your age doesn't meet the minimum required, the game will exit immediately!")
