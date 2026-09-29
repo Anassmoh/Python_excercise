@@ -8,7 +8,8 @@ from functions.menu_select import display, choose_option, check_input, naming_it
 main_menu_list = [" [1]► Play", " [2]► Inventory", " [3]► Recycle", " [4]► Exit"]
 #TODO: check inout for naming the littter after catching
 def main_menu():
-    print("\n◈ MAIN MENU ◈\n")
+    player(name, age, total_income)
+    print("\n\t\t\t\t◈  MAIN MENU  ◈\n")
     display(main_menu_list)
     main_menu_option = choose_option()
     check_input(main_menu_option, main_menu_list)
@@ -17,7 +18,8 @@ def main_menu():
 def play_menu():
     play_menu_list = (" [1]► Roadside", " [2]► Beach", " [3]► Lake", " [4]► Main menu", " [5]► Exit")
     while True:
-        print("\n◈ LITTER ZONES ◈\n")
+        player(name, age, total_income)
+        print("\n\t\t\t\t◈  LITTER ZONES  ◈\n")
         display(play_menu_list)
         map_option = choose_option()
         check_input(map_option, play_menu_list)
@@ -104,8 +106,9 @@ def add_restart():
     return main_menu_list
 
 def inventory_menu():
-    inventory_menu_list = (" [1]► All the nets ", " [2]► Roadside net", " [3]► Beach net", " [4]► Lake net", " [5]► Main menu", " [6]► Exit") 
-    print("\n◈ INVENTORY ◈\n")
+    inventory_menu_list = (" [1]► All the nets ", " [2]► Roadside net", " [3]► Beach net", " [4]► Lake net", " [5]► Main menu", " [6]► Exit")
+    player(name, age, total_income)
+    print("\n\t\t\t\t◈  INVENTORY  ◈\n")
     display(inventory_menu_list)
     inventory_option = choose_option()
     check_input(inventory_option, inventory_menu_list)
@@ -174,24 +177,28 @@ def sell(zone):
 
 def recycle_menu():
     setting_menu_list = (" [1]► Recycle all", " [2]► Recycle a net", " [3]► Main menu", " [4]► Exit")
-    print("\n◈ RECYCLING CENTER ◈\n")
+    player(name, age, total_income)
+    print("\n\t\t\t\t◈  RECYCLING CENTER  ◈\n")
     display(setting_menu_list)
     setting_option = choose_option()
     check_input(setting_option, setting_menu_list)
+    game_over = False # must set both values and return outside of loop to avoid error upon function call
+    total = 0   
     if setting_option == "1" and Items.all_count != 0:
         roadside_income = sell(roadside_net)
         beach_income = sell(beach_net)
         lake_income = sell(lake_net)
-        total_income = roadside_income + beach_income + lake_income
+        total = roadside_income + beach_income + lake_income
         processing()
-        if total_income >= 1:
-            print(f"\rWell done! You've made {total_income:.1f} Markka.")
+        if total >= 1:
+            print(f"\rWell done! You've made {total:.1f} Markkaa.")
         else:
             print(f"\rThe worth need to be at least 1 Markka.")
         time.sleep(2)
     elif setting_option == "2":
         recycle_menu_list = (" [1]► Recycle roadside net", " [2]► Recycle beach net", " [3]► Recycle lake net", " [4]► Main menu", " [5]► Exit")
-        print("\n◈ RECYCLING CENTER ◈\n")
+        player(name, age, total_income)
+        print("\n\t\t\t\t◈  RECYCLING CENTER  ◈\n")
         display(recycle_menu_list)
         recycle_option = choose_option()
         check_input(recycle_option, recycle_menu_list)
@@ -199,7 +206,8 @@ def recycle_menu():
             roadside_income = sell(roadside_net)
             processing()
             if roadside_income >= 1:
-                print(f"\rWell done! You've made {roadside_income:.1f} Markka.")
+                print(f"\rWell done! You've made {roadside_income:.1f} Markkaa.")
+                total = roadside_income
             else:
                 print(f"\rThe worth need to be at least 1 Markka.")
             time.sleep(2)
@@ -207,7 +215,8 @@ def recycle_menu():
             beach_income = sell(beach_net)
             processing()
             if beach_income >= 1:
-                print(f"\rWell done! You've made {beach_income:.1f} Markka.")
+                print(f"\rWell done! You've made {beach_income:.1f} Markkaa.")
+                total = beach_income
             else:
                 print(f"\rThe worth need to be at least 1 Markka.")
             time.sleep(2)
@@ -215,7 +224,8 @@ def recycle_menu():
             lake_income = sell(lake_net)
             processing()
             if lake_income >= 1:
-                print(f"\rWell done! You've made {lake_income:.1f} Markka.")
+                print(f"\rWell done! You've made {lake_income:.1f} Markkaa.")
+                total = lake_income
             else:
                 print(f"\rThe worth need to be at least 1 Markka.")
             time.sleep(2)
@@ -228,10 +238,10 @@ def recycle_menu():
     elif setting_option== "3":
         pass
     elif setting_option == "4" or setting_option == "lopeta":
-        game_over = quit()
-        return game_over
+        game_over = quit() #return has to be outside of loop 
     else:
         print("\nThere is no items to recycle.")
+    return game_over, total
 
 def restart_game():
     restart = input('The progress will be lost, are you sure you want to restart?\nType "yes" to confirm or any other key to resume: ')
@@ -247,21 +257,25 @@ def quit():
     game_over = input('Are you sure you want to quit?\nType "yes" to confirm or any other key to resume: ')
     game_over = game_over.lower()
     if game_over == "yes":
-        print("All the metal have been recycled, Goodbye!")
+        print("All the metal have been recycled for free, Goodbye!")
         game_over = True
     else:
         game_over = False
     return game_over
 
-
+def player(name, age, total_income):  # Displays those parametres on the top in every menu.
+    print(f"\n\tPlayer: {name}  ★  Age: {age} yo  ★  Wallet: {total_income:.1f} Markkaa  ★  {5000-total_income:.1f} to target" )
+    return
 
 name, age = name_age()
+total_income = 0 # must set to 0 to display wallet before reaching the IF that calls recycle function.
 roadside_net = RoadsideItems()
 beach_net = BeachItems()
 lake_net = LakeItems()
 
+
 while int(age) >= 12:
-    print(f"\n{name}, {age} years old.\n\nHello {name}, welcome to MagNet!")
+    print(f"\nHello {name}, welcome to MagNet!")
     game_over = False
     restart = False
     while not game_over:
@@ -271,7 +285,8 @@ while int(age) >= 12:
         elif main_menu_option == "2":
             game_over = inventory_menu()
         elif main_menu_option == "3":
-            game_over = recycle_menu()
+            game_over, total = recycle_menu()
+            total_income += total  # Adds money to wallet everytime you recycle
         elif main_menu_option == "4":
             if " [4]► Restart" in main_menu_list:
                 restart = restart_game()
@@ -286,6 +301,7 @@ while int(age) >= 12:
         name, age = name_age()
     elif game_over == True:
         break
+
 else: 
     if int(age) < 12:
         print("Your age doesn't meet the minimum required, the game will exit immediately!")

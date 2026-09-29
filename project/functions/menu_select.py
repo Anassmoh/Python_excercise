@@ -1,6 +1,6 @@
 def display(menu_list):
     for menu in menu_list:
-        print(menu)
+        print(f"\t\t\t\t{menu}")
     return
     
 def choose_option():
@@ -21,4 +21,3 @@ def check_input(option, list):
         if option != "lopeta" and option != "":
             print("Please select a valid option")
     return
-
