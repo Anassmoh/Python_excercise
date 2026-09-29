@@ -59,7 +59,7 @@ class RoadsideItems:
         else:
             print(f" has {self.items_count} items:")
         for item in self.items:
-                print(f" •{item.name}: {item.weight}g")
+                print(f" •{item.name}: {item.weight:.1f}g")
         return
 
 class BeachItems(RoadsideItems):

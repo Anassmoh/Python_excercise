@@ -3,7 +3,7 @@ import random
 from classes.items_classes.items import Items, RoadsideItems, BeachItems, LakeItems
 from functions.loading import measuring, processing, manual_scrap, demagnefy
 from functions.check_input import name_age
-from functions.menu_select import display, choose_option, check_input
+from functions.menu_select import display, choose_option, check_input, naming_item
 
 main_menu_list = [" [1]► Play", " [2]► Inventory", " [3]► Recycle", " [4]► Exit"]
 #TODO: check inout for naming the littter after catching
@@ -75,7 +75,7 @@ def magnet_fishing():
         demagnefy()
         measuring()
         print(f"\r{weight:.1f}g                                  ", end='')
-        name = input(f"\nYou found {weight:.1f}g of {matter}, name the item and press ENTER to collect it to the net: ")
+        name = naming_item(weight, matter)        
         litter = Items(name, voltage, weight, matter)
     else:
         weight = voltage * 0.02
@@ -85,7 +85,7 @@ def magnet_fishing():
             manual_scrap()
             measuring()
             print(f"\r{weight:.1f}g               ", end='')
-            name = input(f"\nYou found {weight:.1f}g of {matter}, name the item and press ENTER to collect it to the net: ")
+            name = naming_item(weight, matter)            
             litter = Items(name, voltage, weight, matter)
         else:               
             weight = voltage * 0.02             
@@ -93,7 +93,7 @@ def magnet_fishing():
             manual_scrap()
             measuring()
             print(f"\r{weight:.1f}g                      ", end='')
-            name = input(f"\nYou found {weight:.1f}g of {matter}, name the item and press ENTER to collect it to the net: ")
+            name = naming_item(weight, matter)
             litter = Items(name, voltage, weight, matter)    
     return litter
 
@@ -203,7 +203,7 @@ def recycle_menu():
             else:
                 print(f"\rThe worth need to be at least 1 Markka.")
             time.sleep(2)
-        elif recycle_option == "2" and roadside_net.items_count != 0:
+        elif recycle_option == "2" and beach_net.items_count != 0:
             beach_income = sell(beach_net)
             processing()
             if beach_income >= 1:
@@ -211,7 +211,7 @@ def recycle_menu():
             else:
                 print(f"\rThe worth need to be at least 1 Markka.")
             time.sleep(2)
-        elif recycle_option == "3" and roadside_net.items_count != 0:
+        elif recycle_option == "3" and lake_net.items_count != 0:
             lake_income = sell(lake_net)
             processing()
             if lake_income >= 1:

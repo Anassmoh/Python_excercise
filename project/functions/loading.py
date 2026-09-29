@@ -8,7 +8,7 @@ def measuring():
         time.sleep(0.5)
         print(f"\rMeasuring the item...               ", end='')
         time.sleep(0.5)
-        return
+    return
 
 def manual_scrap():
     for i in range(2):
@@ -18,7 +18,7 @@ def manual_scrap():
         time.sleep(0.5)
         print(f"\rHand scrapping the item... ", end='')
         time.sleep(0.5)
-        return
+    return
     
 def demagnefy():
     for i in range(2):
@@ -28,6 +28,7 @@ def demagnefy():
         time.sleep(0.5)
         print(f"\rDetaching the item from the magnet... ", end='')
         time.sleep(0.5)
+    return
 
 def processing():
     print("")
