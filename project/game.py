@@ -274,8 +274,6 @@ def player(name, age, total_income):  # Displays those parametres on the top in 
 name, age = name_age()
 total_income = 0 # must set to 0 to display wallet before reaching the IF that calls recycle function.
 players = {}
-with open("save_checkpoint.txt", "w") as file:
-    json.dump(players, file)
 with open("save_checkpoint.txt", "r") as file:
     players = json.load(file)
 roadside_net = RoadsideItems()
