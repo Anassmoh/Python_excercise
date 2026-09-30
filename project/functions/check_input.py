@@ -8,7 +8,7 @@ def name_age():
             print("Please Enter a valid name.\n") 
     while True:
         age = input("Enter your age: ")
-        if age.isalpha() or age == "":
+        if not age.isdigit() or age == "":
             print("Please enter a valid age.\n")
         elif int(age) <= 0:
             print("Please enter a valid age.\n")

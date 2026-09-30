@@ -2,11 +2,11 @@ import time
 
 def measuring():
     for i in range(2):
-        print(f"\rMeasuring the item.                 ", end='')
+        print(f"\rMeasuring the item.                   ", end='')
         time.sleep(0.5)
-        print(f"\rMeasuring the item..                ", end='')
+        print(f"\rMeasuring the item..                  ", end='')
         time.sleep(0.5)
-        print(f"\rMeasuring the item...               ", end='')
+        print(f"\rMeasuring the item...                 ", end='')
         time.sleep(0.5)
     return
 

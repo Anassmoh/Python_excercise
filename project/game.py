@@ -1,5 +1,6 @@
 import json
 import time
+import threading
 import random
 from classes.items_classes.items import Items, RoadsideItems, BeachItems, LakeItems
 from functions.loading import measuring, processing, manual_scrap, demagnefy
@@ -7,6 +8,10 @@ from functions.check_input import name_age
 from functions.menu_select import display, choose_option, check_input, naming_item
 
 main_menu_list = [" [1]► Play", " [2]► Inventory", " [3]► Recycle", " [4]► Exit"]
+# TODO : introduce time.time() countdown
+# TODO : considere threading to run codes simultanuously
+battery = 100 
+
 #TODO: check inout for naming the littter after catching
 def main_menu():
     player(name, age, total_income)
@@ -16,43 +21,68 @@ def main_menu():
     check_input(main_menu_option, main_menu_list)
     return main_menu_option
 
-def play_menu():
-    play_menu_list = (" [1]► Roadside", " [2]► Beach", " [3]► Lake", " [4]► Main menu", " [5]► Exit")
-    while True:
+def low_battery():
+    if battery < 20:
+        print(f"\rYour battery is running low! ({battery}%)    ", end='')
+        time.sleep(0.6)
+        for i in range(3):
+            print("\r                                   ", end='')
+            time.sleep(0.5)
+            print(f"\rYour battery is running low! ({battery}%)  ", end='')
+            time.sleep(0.6)
+    return
+
+def zone_menu():
+    zone_menu_list = (" [1]► Roadside", " [2]► Beach", " [3]► Lake", " [4]► Main menu", " [5]► Exit")
+    game_over = False
+    while battery > 0:
         player(name, age, total_income)
         print("\n\t\t\t\t◈  LITTER ZONES  ◈\n")
-        display(play_menu_list)
-        map_option = choose_option()
-        check_input(map_option, play_menu_list)
-        if map_option == "1":
+        display(zone_menu_list)
+        zone_option = choose_option()
+        check_input(zone_option, zone_menu_list)
+        if zone_option == "1":
             while True:
-                cast = input("Press ENTER to cast your magnet or type any other key to change the zone: ")
+                if battery == 0:
+                    zone_option == "4"
+                    break
+                low_battery()
+                cast = input("\rPress ENTER to cast your magnet or type any other key to change the zone: ")
                 if cast == "":
                     litter = magnet_fishing()
                     roadside_net.collectNprint(litter)
                 else:
                     break
-        elif map_option == "2":
+        elif zone_option == "2":
             while True:
-                cast = input("Press ENTER to cast your magnet or type any other key to change the zone: ")
+                if battery == 0:
+                    zone_option == "4"
+                    break
+                low_battery()
+                cast = input("\rPress ENTER to cast your magnet or type any other key to change the zone: ")
                 if cast == "":
                     litter = magnet_fishing()
                     beach_net.collectNprint(litter)
                 else:
                     break
-        elif map_option == "3":
+        elif zone_option == "3":
             while True:
-                cast = input("Press ENTER to cast your magnet or type any other key to change the zone: ")
+                zone_option == "4"
+                if battery == 0:
+                    break
+                low_battery()
+                cast = input("\rPress ENTER to cast your magnet or type any other key to change the zone: ")
                 if cast == "":
                     litter = magnet_fishing()
                     lake_net.collectNprint(litter)
                 else:
                     break
-        elif map_option == "4":
+        elif zone_option == "4":
             break
-        elif map_option == "5" or map_option == "lopeta":
+        elif zone_option == "5" or zone_option == "lopeta":
             game_over = quit()
             return game_over
+        
         
 def magnet_fishing():
     add_restart()
@@ -66,7 +96,7 @@ def magnet_fishing():
         time.sleep(0.3)
         print(f"\r{voltage + random.randint(-2,2)} μV", end='')
     for n in range(8):
-        print(f"\r      !", end='')
+        print(f"\r      !       ", end='')
         time.sleep(0.1)
         print(f"\r{voltage} μV", end='')
         time.sleep(0.2)
@@ -89,7 +119,7 @@ def magnet_fishing():
             measuring()
             print(f"\r{weight:.1f}g               ", end='')
             name = naming_item(weight, matter)            
-            litter = Items(name, voltage, weight, matter)
+            litter = Items(name, voltage, weight, matter) 
         else:               
             weight = voltage * 0.02             
             matter = random.choice(["silver", "gold"])
@@ -97,7 +127,11 @@ def magnet_fishing():
             measuring()
             print(f"\r{weight:.1f}g                      ", end='')
             name = naming_item(weight, matter)
-            litter = Items(name, voltage, weight, matter)    
+            litter = Items(name, voltage, weight, matter)
+    global battery
+    battery -= random.randint(1,3)
+    if battery < 0:
+        battery = 0
     return litter
 
 def add_restart():
@@ -177,15 +211,15 @@ def sell(zone):
     return price
 
 def recycle_menu():
-    setting_menu_list = (" [1]► Recycle all", " [2]► Recycle a net", " [3]► Main menu", " [4]► Exit")
+    recycle_menu_list = (" [1]► Recycle all", " [2]► Recycle a net", " [3]► Main menu", " [4]► Exit")
     player(name, age, total_income)
     print("\n\t\t\t\t◈  RECYCLING CENTER  ◈\n")
-    display(setting_menu_list)
-    setting_option = choose_option()
-    check_input(setting_option, setting_menu_list)
+    display(recycle_menu_list)
+    recycle_option = choose_option()
+    check_input(recycle_option, recycle_menu_list)
     game_over = False # must set both values and return outside of loop to avoid error upon function call
-    total = 0   
-    if setting_option == "1" and Items.all_count != 0:
+    total = 0
+    if recycle_option == "1" and Items.all_count != 0:
         roadside_income = sell(roadside_net)
         beach_income = sell(beach_net)
         lake_income = sell(lake_net)
@@ -196,7 +230,7 @@ def recycle_menu():
         else:
             print(f"\rThe worth need to be at least 1 Markka.")
         time.sleep(2)
-    elif setting_option == "2":
+    elif recycle_option == "2":
         recycle_menu_list = (" [1]► Recycle roadside net", " [2]► Recycle beach net", " [3]► Recycle lake net", " [4]► Main menu", " [5]► Exit")
         player(name, age, total_income)
         print("\n\t\t\t\t◈  RECYCLING CENTER  ◈\n")
@@ -236,9 +270,9 @@ def recycle_menu():
             game_over = quit()
         else:
             print("\nThere is nothing to recycle in this net.")
-    elif setting_option== "3":
+    elif recycle_option== "3":
         pass
-    elif setting_option == "4" or setting_option == "lopeta":
+    elif recycle_option == "4" or recycle_option == "lopeta":
         game_over = quit() #return has to be outside of loop 
     else:
         print("\nThere is no items to recycle.")
@@ -268,14 +302,17 @@ def quit():
     return game_over
 
 def player(name, age, total_income):  # Displays those parametres on the top in every menu.
-    print(f"\n\tPlayer: {name}  ★  Age: {age} yo  ★  Wallet: {total_income:.1f} Markkaa  ★  {2500-total_income:.1f} to target" )
+    print(f"\n\tPlayer: {name}  ★  Age: {age} yo  ★  Wallet: {total_income:.1f} Markkaa  ★  {battery}% battery")
     return
 
 name, age = name_age()
 total_income = 0 # must set to 0 to display wallet before reaching the IF that calls recycle function.
+
 players = {}
+
 with open("save_checkpoint.txt", "r") as file:
     players = json.load(file)
+
 roadside_net = RoadsideItems()
 beach_net = BeachItems()
 lake_net = LakeItems()
@@ -294,38 +331,46 @@ while int(age) >= 12:
     else:
         print(f"\nHello {name}, welcome to MagNet!")
     while not game_over:
-        main_menu_option = main_menu()
-        if main_menu_option == "1":
-            game_over = play_menu()
-        elif main_menu_option == "2":
-            game_over = inventory_menu()
-        elif main_menu_option == "3":
-            game_over, total = recycle_menu()
-            total_income += total  # Adds money to wallet everytime you recycle
-            if 0 < total_income < 2500:
-                players[name] = [int(age), total_income]
-            else:
-                won = "Congratulations, you won the game!"
-                print("\n\t\t\t\t", end='')
-                for i in range(34):
-                    print(f"{won[i]}", end='', flush = True)
-                    time.sleep(0.08)
-                players.pop(name)
-                with open("save_checkpoint.txt", "w") as file:
-                    json.dump(players, file)
-                time.sleep(2)
-                print("\n\t\t\t\t    The game will close now.\n")
-                game_over = True
-                time.sleep(2)
-        elif main_menu_option == "4":
-            if " [4]► Restart" in main_menu_list:
-                restart = restart_game()
-                if restart == True:
+        while battery > 0:
+            main_menu_option = main_menu()
+            if main_menu_option == "1":
+                game_over = zone_menu()
+            elif main_menu_option == "2":
+                game_over = inventory_menu()
+            elif main_menu_option == "3":
+                game_over, total = recycle_menu()
+                total_income += total  # Adds money to wallet everytime you recycle
+                if 0 < total_income < 2500:
+                    players[name] = [int(age), total_income]
+                elif total_income >= 2500:
+                    won = "Congratulations, you won the game!"
+                    print("\n\t\t\t\t", end='')
+                    for i in range(34):
+                        print(f"{won[i]}", end='', flush = True)
+                        time.sleep(0.08)
+                    players.pop(name)
+                    with open("save_checkpoint.txt", "w") as file:
+                        json.dump(players, file)
+                    time.sleep(2)
+                    print("\n\t\t\t\t    The game will close now.\n")
                     game_over = True
-            else:
-                game_over = quit() 
-        elif (main_menu_option == "5" and " [4]► Restart" in main_menu_list) or main_menu_option == "lopeta":
-            game_over = quit()
+                    time.sleep(2)
+            elif main_menu_option == "4":
+                if " [4]► Restart" in main_menu_list:
+                    restart = restart_game()
+                    if restart == True:
+                        game_over = True
+                else:
+                    game_over = quit()
+            elif (main_menu_option == "5" and " [4]► Restart" in main_menu_list) or main_menu_option == "lopeta":
+                game_over = quit()
+            if game_over == True:
+                break
+        else:
+            print("Battery drained, charge your Magnet 1.0.")
+            time.sleep(3)
+            game_over = True
+            break
     if restart == True:
         main_menu_list = [" [1]► Play", " [2]► Inventory", " [3]► Recycle", " [4]► Exit"]
         name, age = name_age()
