@@ -1,3 +1,4 @@
+import json
 import time
 import random
 from classes.items_classes.items import Items, RoadsideItems, BeachItems, LakeItems
@@ -254,30 +255,44 @@ def restart_game():
     return restart
 
 def quit():
-    game_over = input('Are you sure you want to quit?\nType "yes" to confirm or any other key to resume: ')
+    game_over = input('Never quit before recycling, else you will not receive an income upon an automatic recycle\nType "yes" to confirm or any other key to resume: ')
     game_over = game_over.lower()
     if game_over == "yes":
-        print("All the metal have been recycled for free, Goodbye!")
+        print("Goodbye!")
+        time.sleep(1)
         game_over = True
+        with open("save_checkpoint.txt", "w") as file:
+            json.dump(players, file)
     else:
         game_over = False
     return game_over
 
 def player(name, age, total_income):  # Displays those parametres on the top in every menu.
-    print(f"\n\tPlayer: {name}  ★  Age: {age} yo  ★  Wallet: {total_income:.1f} Markkaa  ★  {5000-total_income:.1f} to target" )
+    print(f"\n\tPlayer: {name}  ★  Age: {age} yo  ★  Wallet: {total_income:.1f} Markkaa  ★  {2500-total_income:.1f} to target" )
     return
 
 name, age = name_age()
 total_income = 0 # must set to 0 to display wallet before reaching the IF that calls recycle function.
+players = {}
+with open("save_checkpoint.txt", "r") as file:
+    players = json.load(file)
 roadside_net = RoadsideItems()
 beach_net = BeachItems()
 lake_net = LakeItems()
 
 
 while int(age) >= 12:
-    print(f"\nHello {name}, welcome to MagNet!")
+    restart = False # both has to be here in case loaded name doesn't match age, it will restart
     game_over = False
-    restart = False
+    if name in players and players[name][0] == int(age):
+        total_income = players[name][1]
+        print(f"\nHello {name}, welcome back to MagNet!")
+    elif name in players and players[name][0] != age:
+        print("Username already takken, try again")
+        restart = True
+        game_over = True
+    else:
+        print(f"\nHello {name}, welcome to MagNet!")
     while not game_over:
         main_menu_option = main_menu()
         if main_menu_option == "1":
@@ -287,6 +302,21 @@ while int(age) >= 12:
         elif main_menu_option == "3":
             game_over, total = recycle_menu()
             total_income += total  # Adds money to wallet everytime you recycle
+            if 0 < total_income < 2500:
+                players[name] = [int(age), total_income]
+            else:
+                won = "Congratulations, you won the game!"
+                print("\n\t\t\t\t", end='')
+                for i in range(34):
+                    print(f"{won[i]}", end='', flush = True)
+                    time.sleep(0.08)
+                players.pop(name)
+                with open("save_checkpoint.txt", "w") as file:
+                    json.dump(players, file)
+                time.sleep(2)
+                print("\n\t\t\t\t    The game will close now.\n")
+                game_over = True
+                time.sleep(2)
         elif main_menu_option == "4":
             if " [4]► Restart" in main_menu_list:
                 restart = restart_game()
