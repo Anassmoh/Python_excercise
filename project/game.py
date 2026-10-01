@@ -1,7 +1,7 @@
 import json
 import time
 import random
-from classes.items_classes.items import Items, RoadsideItems, BeachItems, LakeItems
+from classes.items import Items, RoadsideItems, BeachItems, LakeItems
 from functions.loading import measuring, processing, manual_scrap, demagnify
 from functions.check_input import name_age
 from functions.menu_select import display, choose_option, check_input, naming_item
@@ -283,7 +283,7 @@ def restart_game(): #allows you to restart the game by removing the current play
         #TODO: recheck if it works.
         print(f"Goodbye {name}!")
         players.pop(name) #removes the player from the dictionnary.
-        with open("save_checkpoint.txt", "w") as file:  #saves the account modification.
+        with open("project/save_checkpoint.txt", "w") as file:  #saves the account modification.
             json.dump(players, file)
         restart = True
     else:
@@ -297,7 +297,7 @@ def quit(): #Not only allows you to quit the game, but the only way to save your
         print(f"Progress saved! see you soon {name}!")
         time.sleep(1)
         game_over = True
-        with open("save_checkpoint.txt", "w") as file: #saves your progress.
+        with open("project/save_checkpoint.txt", "w") as file: #saves your progress.
             json.dump(players, file)
     else:
         game_over = False
@@ -307,12 +307,87 @@ def player(name, age, total_income):  # Displays those parametres on the top in 
     print(f"\n\tPlayer: {name}  ★  Age: {age} yo  ★  Wallet: {total_income:.1f} Markkaa  ★  {battery}% battery")
     return
 
+def intro_print():
+    with open("project/text/intro.txt") as txt1:
+        intro = txt1.read()
+
+    print()
+    for i in range(172):
+        print(f"{intro[i]}", end='', flush = True)
+        time.sleep(0.04)
+    time.sleep(0.8)
+    print()
+    for i in range(172, 368):
+        print(f"{intro[i]}", end='', flush = True)
+        time.sleep(0.04)
+    time.sleep(0.8)
+    for i in range(368, 423):
+        print(f"{intro[i]}", end='', flush = True)
+        time.sleep(0.04)
+    time.sleep(0.8)
+    print()
+    for i in range(423, 481):
+        print(f"{intro[i]}", end='', flush = True)
+        time.sleep(0.04)
+    time.sleep(0.8)
+    print()
+    for i in range(481, 577):
+        print(f"{intro[i]}", end='', flush = True)
+        time.sleep(0.05)
+    print("\n")
+    time.sleep(2)
+    return
+
+def instru_print():
+    with open("project/text/instructions.txt") as txt2:
+        instr = txt2.read()
+
+    print()
+    for i in range(114):
+        print(f"{instr[i]}", end='', flush = True)
+        time.sleep(0.04)
+    time.sleep(0.8)
+    print()
+    for i in range(114,442):
+        print(f"{instr[i]}", end='', flush = True)
+        time.sleep(0.04)
+    time.sleep(0.8)
+    print()
+    for i in range(442,586):
+        print(f"{instr[i]}", end='', flush = True)
+        time.sleep(0.04)
+    time.sleep(0.8)
+    print()
+    for i in range(586,715):
+        print(f"{instr[i]}", end='', flush = True)
+        time.sleep(0.04)
+    time.sleep(0.8)
+    print()
+    for i in range(715,902):
+        print(f"{instr[i]}", end='', flush = True)
+        time.sleep(0.04)
+    time.sleep(0.8)
+    print()
+    for i in range(902,1288):
+        print(f"{instr[i]}", end='', flush = True)
+        time.sleep(0.04)
+    time.sleep(0.8)
+    print()
+    for i in range(1288,1530):
+        print(f"{instr[i]}", end='', flush = True)
+        time.sleep(0.04)
+    time.sleep(0.8)
+    print("\n")
+    time.sleep(6)
+
+intro_print()
+
 name, age = name_age() #Returns the name and age that you input.
 total_income = 0 #Must be set to 0 to display wallet before reaching the recycle function that returns income.
 
 players = {} #dictionnary that holds name, age and income. it is the variable that get saved after quiting the game.
 
-with open("save_checkpoint.txt", "r") as file: #Import the "accounts" dictionary.
+with open("project/save_checkpoint.txt", "r") as file: #Import the "accounts" dictionary.
     players = json.load(file)
 
 roadside_net = RoadsideItems() #Creates object in assosiation with the overall item class
@@ -332,6 +407,7 @@ while int(age) >= 12:
         game_over = True
     else:
         print(f"\nHello {name}, welcome to MagNet!")
+        instru_print()
     while not game_over:
         while battery > 0: #as long as there is battery, game will not end 
             main_menu_option = main_menu() #First menu to be displayed after name and age checks out.
@@ -351,7 +427,7 @@ while int(age) >= 12:
                         print(f"{won[i]}", end='', flush = True)
                         time.sleep(0.08)
                     players.pop(name)   #Deletes player, so won't prevent him to play again (win error everytime he loads 2500 markkaa).
-                    with open("save_checkpoint.txt", "w") as file:
+                    with open("project/save_checkpoint.txt", "w") as file:
                         json.dump(players, file)
                     time.sleep(2)
                     print("\n\t\t\t\t    The game will close now.\n")

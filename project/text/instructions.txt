@@ -1,0 +1,20 @@
+You are now equiped with MagMed and 3 MagNets, they are reinforced heavy duty-nets for collecting 
+corroded metal.
+Choose one of the litter hotspots and start casting your MagMed, once you detect a metal item,
+scrap the ground and pick it up, an iron item however will be pulled by MagMed. Proceed to measure 
+its weight, and write down what it is. The item is collected the to relevant MagNet, your catch is then 
+displayed in the inventory.
+Each litter zone has it own MagNet, which you need recycle its content after it starts to fill up.
+you can also recycle all 3 MagNets at once.
+Your goal is to earn 2500 Markkaa, the recycle revenue depends on the total weight of each matter.
+gold being the most rewarding.
+Save the progress by properly quitting the game, the wallet will be saved as it is in the menu,
+all the non-recycled items will be processed automatically without you earning its worth.
+Remember that your MagMed is battery powered, it is consumed while actively magnet fishing. 
+Draining it will lead to an unproper game shutdown, make sure you casually recycle your catch,
+then quit the game once the battery is low. this will save your progress and allow you to recharge
+the battery. You can also restart the game, which will delete your account as well as the progress.
+These are some reported common finds according to the recycling center:
+nail, screw, bolt, ring, bracelet, horseshoe, brake pad, lug nut, battery, wire, beverage can, 
+watch, shell casing, munition, knife, necklace, fishing hook, coin, key..
+
