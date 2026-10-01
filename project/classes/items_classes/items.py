@@ -1,6 +1,6 @@
 
 class Items:
-    all_count = 0
+    all_count = 0  #Static, keeps track of every item collected regardless of the litter zone.
     
     def __init__(self, name, voltage, weight, matter):
         self.name = name
@@ -10,7 +10,7 @@ class Items:
         Items.all_count += 1
         return
         
-class RoadsideItems:
+class RoadsideItems:  #In assosiation with the previous Class but also a superClass for the next 2.
     def __init__(self):
         self.items = []
         self.items_count = 0
@@ -28,7 +28,7 @@ class RoadsideItems:
         self.gold_price = 0
         return
 
-    def collectNprint(self, item):
+    def collectNprint(self, item): #Collects the items, counts units, and price depending on weight and matter.
             self.items.append(item)
             print(f"{item.name} is added to the net.")
             self.items_count += 1
@@ -53,8 +53,8 @@ class RoadsideItems:
             return
 
 
-    def view_inventory(self):
-        if self.items_count <= 1:
+    def view_inventory(self):  #Displays items if there's any, print in the same line of the main code litter zone print.
+        if self.items_count <= 1: # considers 1 or many
             print(f" has {self.items_count} item:")
         else:
             print(f" has {self.items_count} items:")
@@ -62,7 +62,7 @@ class RoadsideItems:
                 print(f" •{item.name}: {item.weight:.1f}g")
         return
 
-class BeachItems(RoadsideItems):
+class BeachItems(RoadsideItems): #Inherites everything from superClass
     def __init__(self):
         super().__init__()
         return
@@ -75,7 +75,7 @@ class BeachItems(RoadsideItems):
         super().view_inventory()
         return
 
-class LakeItems(RoadsideItems):
+class LakeItems(RoadsideItems): #Inherites everything from superClass
     def __init__(self):
         super().__init__()
         return
