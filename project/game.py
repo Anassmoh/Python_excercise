@@ -5,9 +5,23 @@ from classes.items import Items, RoadsideItems, BeachItems, LakeItems
 from functions.loading import measuring, processing, manual_scrap, demagnify
 from functions.check_input import name_age
 from functions.menu_select import display, choose_option, check_input, naming_item
+from functions.display_text import intro_print, instru_print
 
 main_menu_list = [" [1]► Play", " [2]► Inventory", " [3]► Recycle", " [4]► Exit"]
 battery = 100  
+
+# For testing purposes, you can:
+# 1. Press ctrl + b to close the breakpoint and have a full code screen view.
+# 2. Lower the "battery" value from 100 to 22 (line 11).
+# 3. Higher the total_income from the save_checkpoint disctionnary to 2400, or...
+#    Alternatively lower the target from 2500 to 100 markkaa (line 359 and 361).
+# 4. You can also delete intro_print() (line 321) and instru_print() (line 348) commands to jump straight to the menu.
+
+
+# The following functions have to reside in the main code, as they are heavily interconnected.
+# Importing them from differents files will lead to an inevitable cirtcular import.
+
+
 
 def main_menu():  # displays main menu and player info, allows you to choose an option, chekcs it and returns it.
     player(name, age, total_income)
@@ -307,79 +321,6 @@ def player(name, age, total_income):  # Displays those parametres on the top in 
     print(f"\n\tPlayer: {name}  ★  Age: {age} yo  ★  Wallet: {total_income:.1f} Markkaa  ★  {battery}% battery")
     return
 
-def intro_print():
-    with open("project/text/intro.txt") as txt1:
-        intro = txt1.read()
-
-    print()
-    for i in range(172):
-        print(f"{intro[i]}", end='', flush = True)
-        time.sleep(0.04)
-    time.sleep(0.8)
-    print()
-    for i in range(172, 368):
-        print(f"{intro[i]}", end='', flush = True)
-        time.sleep(0.04)
-    time.sleep(0.8)
-    for i in range(368, 423):
-        print(f"{intro[i]}", end='', flush = True)
-        time.sleep(0.04)
-    time.sleep(0.8)
-    print()
-    for i in range(423, 481):
-        print(f"{intro[i]}", end='', flush = True)
-        time.sleep(0.04)
-    time.sleep(0.8)
-    print()
-    for i in range(481, 577):
-        print(f"{intro[i]}", end='', flush = True)
-        time.sleep(0.05)
-    print("\n")
-    time.sleep(2)
-    return
-
-def instru_print():
-    with open("project/text/instructions.txt") as txt2:
-        instr = txt2.read()
-
-    print()
-    for i in range(114):
-        print(f"{instr[i]}", end='', flush = True)
-        time.sleep(0.04)
-    time.sleep(0.8)
-    print()
-    for i in range(114,442):
-        print(f"{instr[i]}", end='', flush = True)
-        time.sleep(0.04)
-    time.sleep(0.8)
-    print()
-    for i in range(442,586):
-        print(f"{instr[i]}", end='', flush = True)
-        time.sleep(0.04)
-    time.sleep(0.8)
-    print()
-    for i in range(586,715):
-        print(f"{instr[i]}", end='', flush = True)
-        time.sleep(0.04)
-    time.sleep(0.8)
-    print()
-    for i in range(715,902):
-        print(f"{instr[i]}", end='', flush = True)
-        time.sleep(0.04)
-    time.sleep(0.8)
-    print()
-    for i in range(902,1288):
-        print(f"{instr[i]}", end='', flush = True)
-        time.sleep(0.04)
-    time.sleep(0.8)
-    print()
-    for i in range(1288,1530):
-        print(f"{instr[i]}", end='', flush = True)
-        time.sleep(0.04)
-    time.sleep(0.8)
-    print("\n")
-    time.sleep(6)
-
 intro_print()
 
 name, age = name_age() #Returns the name and age that you input.
@@ -423,8 +364,8 @@ while int(age) >= 12:
                 elif total_income >= 2500: #Target reached, game will end and player will be deleted so he can play again.
                     won = "Congratulations, you won the game!"
                     print("\n\t\t\t\t", end='')
-                    for i in range(34):  #visuals in the middle of the screen
-                        print(f"{won[i]}", end='', flush = True)
+                    for i in range(34):  #visuals in the middle of the screen, forced to print in each iteration
+                        print(f"{won[i]}", end='', flush=True)
                         time.sleep(0.08)
                     players.pop(name)   #Deletes player, so won't prevent him to play again (win error everytime he loads 2500 markkaa).
                     with open("project/save_checkpoint.txt", "w") as file:
@@ -463,5 +404,5 @@ else:
 #TODO : +idea: allow the player to utilize his income to charge his battery, the target then can be highered...
 #        New specifications can be also available to buy for MagMed such as more powerful voltage emission, a 
 #        stronger magnet pull force or even a higher net load intake (current one need to be limited).
-#        Once you reach the money target (money spent), you get a higher level that is saved, instead of deleting the player. 
+#        Once you reach the money target (money spent), you get a higher level, which is saved, instead of deleting the player. 
 #        the bigger level the harder it is to keep maintaining MagMed's battery since it's more powerfull.
