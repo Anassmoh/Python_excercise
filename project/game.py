@@ -24,11 +24,11 @@ battery = 100
 
 
 def main_menu():  # displays main menu and player info, allows you to choose an option, chekcs it and returns it.
-    player(name, age, total_income)
+    player(name, age, total_income)   # diplays player info on top of the menu
     print("\n\t\t\t\t◈  MAIN MENU  ◈\n")
-    display(main_menu_list)
-    main_menu_option = choose_option()
-    check_input(main_menu_option, main_menu_list)
+    display(main_menu_list)   # displays the menu (for loop)
+    main_menu_option = choose_option()  # return the option that you input
+    check_input(main_menu_option, main_menu_list) # checks if the option is valid format and is in the range of the menu.
     return main_menu_option
 
 def low_battery(): # Warns you if the battery is less than 15%.
@@ -308,11 +308,16 @@ def quit(): #Not only allows you to quit the game, but the only way to save your
     game_over = input('Never quit before recycling, else you will not receive an income upon an automatic recycle\nType "yes" to confirm or any other key to resume: ')
     game_over = game_over.lower() #Prevents from accidental quiting, ignores case sensitivity.
     if game_over == "yes":
-        print(f"Progress saved! see you soon {name}!")
-        time.sleep(1)
-        game_over = True
-        with open("project/save_checkpoint.txt", "w") as file: #saves your progress.
-            json.dump(players, file)
+        if total_income > 0: #in case you had some income it will save your account
+            print(f"Progress saved! see you soon {name}!")
+            time.sleep(1)
+            game_over = True
+            with open("project/save_checkpoint.txt", "w") as file: #saves your progress.
+                json.dump(players, file)
+        else:  #with no income, the game can't be saved since the items will be recycled anyway.
+            print(f"Goodbye {name}!")
+            time.sleep(1)
+            game_over = True
     else:
         game_over = False
     return game_over #Returns a boolean value, false if quiting process aborted.
