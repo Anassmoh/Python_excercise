@@ -10,21 +10,26 @@ def intro_print():   #displays intro from inported text file.
         time.sleep(0.04)
     time.sleep(0.8)
     print()
-    for i in range(172, 368):
+    for i in range(172, 369):
         print(f"{intro[i]}", end='', flush=True)
         time.sleep(0.04)
+    time.sleep(0.9)
+    for i in range(369, 382):
+        print(f"{intro[i]}", end='', flush=True)
+        time.sleep(0.1)
     time.sleep(0.8)
-    for i in range(368, 423):
+    print() 
+    for i in range(382, 451):
         print(f"{intro[i]}", end='', flush=True)
         time.sleep(0.04)
     time.sleep(0.8)
     print()
-    for i in range(423, 481):
+    for i in range(451, 508):
         print(f"{intro[i]}", end='', flush=True)
         time.sleep(0.04)
     time.sleep(0.8)
     print()
-    for i in range(481, 577):
+    for i in range(508, 605):
         print(f"{intro[i]}", end='', flush=True)
         time.sleep(0.05)
     print("\n")
