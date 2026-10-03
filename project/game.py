@@ -8,7 +8,7 @@ from functions.menu_select import display, choose_option, check_input, naming_it
 from functions.display_text import intro_print, instru_print
 
 main_menu_list = [" [1]► Play", " [2]► Inventory", " [3]► Recycle", " [4]► Exit"]
-battery = 100  
+battery = 100
 
 # For testing purposes, you can:
 # 1. Press ctrl + b to close the breakpoint and have a full code screen view.
@@ -36,9 +36,9 @@ def low_battery(): # Warns you if the battery is less than 15%.
         print(f"\rYour battery is running low! {battery}%    ", end='')
         time.sleep(0.6)
         for i in range(3):
-            print("\r                                   ", end='')
+            print("\r                                 ", end='')
             time.sleep(0.5)
-            print(f"\rYour battery is running low! {battery}%  ", end='')
+            print(f"\rYour battery is running low! {battery}%    ", end='')
             time.sleep(0.6)
     return
 
@@ -107,7 +107,7 @@ def magnet_fishing():
         time.sleep(0.3)
         print(f"\r{voltage + random.randint(-2,2)} μV", end='') 
     for n in range(8):    #  mimics a definite find.
-        print(f"\r      !       ", end='')
+        print(f"\r      ! ", end='')
         time.sleep(0.1)
         print(f"\r{voltage} μV", end='')
         time.sleep(0.2)
@@ -146,6 +146,9 @@ def magnet_fishing():
         battery = 0
     return litter
 
+#TODO: Restart initially was added to the menu only after casting the magnet, after introducing income, a player should be able
+# to restart the game after continuing the game and loading his income back (restart not in menu despite income is more than 0)
+# restart should be added based on income not items in net.
 def add_restart():    # adds restart if not already in main menu, pushed exit to number 5.
     if " [4]► Restart" not in main_menu_list:
         main_menu_list.insert(3, " [4]► Restart")
@@ -281,13 +284,13 @@ def recycle_menu(): #
             pass
         elif recycle_option == "5" or recycle_option == "lopeta":
             game_over = quit()
-        else:
+        elif 1 <= int(recycle_option) <= 3 and Items.all_count == 0:
             print("\nThere is nothing to recycle in this net.")
     elif recycle_option== "3":
         pass
     elif recycle_option == "4" or recycle_option == "lopeta":
         game_over = quit() #return has to be outside of loop 
-    else:
+    elif recycle_option == "1" and Items.all_count == 0:
         print("\nThere is no items to recycle.")
     return game_over, total # return placed outside loop since values are always attributed to both variables.
 
@@ -352,7 +355,9 @@ while int(age) >= 12:
         restart = True # +next line: Allows you to keep tryng names till it's new player, or an account info matches in the dictionnary.
         game_over = True
     else:
+        time.sleep(1)
         print(f"\nHello {name}, welcome to MagNet!")
+        time.sleep(1)
         instru_print()
     while not game_over:
         while battery > 0: #as long as there is battery, game will not end 
@@ -372,11 +377,19 @@ while int(age) >= 12:
                     for i in range(34):  #visuals in the middle of the screen, forced to print in each iteration
                         print(f"{won[i]}", end='', flush=True)
                         time.sleep(0.08)
+                    thanks = "Thank you for your daily contribution for a sustainable lifestyle."
+                    time.sleep(1)
+                    print("\n\t\t ", end='')
+                    for i in range(66):  
+                        print(f"{thanks[i]}", end='', flush=True)
+                        time.sleep(0.08)                        
                     players.pop(name)   #Deletes player, so won't prevent him to play again (win error everytime he loads 2500 markkaa).
                     with open("project/save_checkpoint.txt", "w") as file:
                         json.dump(players, file)
-                    time.sleep(2)
-                    print("\n\t\t\t\t    The game will close now.\n")
+                    time.sleep(1)
+                    print("\n\t\t\t\t     Recycling your account...")
+                    time.sleep(1)
+                    print("\t\t\t\t\tSee you tomorrow!\n")
                     game_over = True   #Breaks loop
                     time.sleep(2)
             elif main_menu_option == "4": #Action depends on whether restart or quit is in index 3.
@@ -399,6 +412,8 @@ while int(age) >= 12:
     if restart == True: #If restart process is definite, will turn main_menu back to normal.
         main_menu_list = [" [1]► Play", " [2]► Inventory", " [3]► Recycle", " [4]► Exit"]
         name, age = name_age()
+        total_income = 0 #+nest: reset both values, new player will carry on the deleted player's progress
+        battery = 100
     elif game_over == True:
         break
 
