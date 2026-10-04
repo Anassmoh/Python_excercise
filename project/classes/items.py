@@ -43,13 +43,13 @@ class RoadsideItems:  #In assosiation with the previous Class but also a superCl
                 self.copper_price += (item.weight * 0.076)
             elif item.matter == "iron":
                 self.iron_weight += item.weight
-                self.iron_price += (item.weight * 0.002)
+                self.iron_price += (item.weight * 0.004)
             elif item.matter == "silver":
                 self.silver_weight += item.weight
                 self.silver_price += (item.weight * 11)
             elif item.matter == "gold":
                 self.gold_weight += item.weight
-                self.gold_price += (item.weight * 720)
+                self.gold_price += (item.weight * 650)
             return
 
 

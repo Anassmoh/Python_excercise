@@ -16,7 +16,7 @@ Rule number one: Item found, item collected! You can never put the litter back, 
 
 You can view each Magnet content or your whole catch from the inventory menu. Once it starts to be filled, recycle it at the recycling center, you will receive an income based on the total weight of each matter.
 
-Primarly, your mission is to clean your area from all the hazards and promote a sustainable lifestyle. Additionally, an income of 2500 markka is set for you as a daily goal.
+Primarely, your mission is to clean your area from all the hazards and promote a sustainable lifestyle. Additionally, an income of 2500 markka is set for you as a daily goal.
 
 MagMed is equipped with a 9V battery, which is draining 1% to 3% everytime you cast it, bear in mind that you may not be able to reach your daily goal with one charge, a low battery message will indicate that you need to soon quit the game, to allow the battery to charge, also to save your progress, which can only be done by properly exiting the game.
 
@@ -26,17 +26,17 @@ Regardless of how the game was terminated, any non-recycled item left behind wil
 
 After recharging your battery, enter your name and age and carry on from your latest saving checkpoint. Once the target reached, you will be greeted and appreciated for your environmental contribution, then the system will recycle your account..
 
-For reference, here's some common finds in your area according to the recycling center reports:
-nail, screw, bolt, ring, bracelet, horseshoe, brake pad, lug nut, battery, wire, beverage can, 
+For reference, here's some common finds in your area according to the recycling center report:
+Nail, screw, bolt, ring, bracelet, horseshoe, brake pad, lug nut, battery, wire, beverage can, 
 watch, shell casing, munition, knife, necklace, fishing hook, coin, key..
 
-The game may be developped in the future, if so, the update would gradually include:
+The game may be developped in the future, if so, the updates would gradually include:
 -Player levels.
 -Upgrades for MagMed.(pull force, depth detecting, surface area, bigger MagNet intake, battery life...)
 -Hazardous finds that will block the game forcing you to immediately recycle.
 -Instant battery recharge for a fee.
 -Sand sifter to filter the sand while battery is charging 0.2% per sec.
--Utilizing some findings in maintaining MagMed. (scews, bolts, springs...).
+-Utilizing some findings in maintaining MagMed. (screws, bolts, springs...).
 -Scrap metal garage sell. (pop up offers by the villagers to buy reusable items at a higher price).
 -Rare coin collection exhibit.
 
