@@ -148,7 +148,7 @@ def magnet_fishing():
 
 #TODO: Restart initially was added to the menu only after casting the magnet, after introducing income, a player should be able
 # to restart the game after continuing the game and loading his income back (restart not in menu despite income is more than 0)
-# restart should be added based on income not items in net.
+# restart should be added based on income not items in net.  FIXED!
 def add_restart():    # adds restart if not already in main menu, pushed exit to number 5.
     if " [4]► Restart" not in main_menu_list:
         main_menu_list.insert(3, " [4]► Restart")
@@ -349,6 +349,7 @@ while int(age) >= 12:
     game_over = False
     if name in players and players[name][0] == int(age): #Checks if name and age already in dictionnary.
         total_income = players[name][1] # set the income to whatever you left it in the last checkpoint save.
+        add_restart()
         print(f"\nHello {name}, welcome back to MagNet!")
     elif name in players and players[name][0] != age: #Prevents from overwriting age, in case name doesn't match age in the dictionnary.
         print("Username already takken, try again")
