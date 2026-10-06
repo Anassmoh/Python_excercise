@@ -17,11 +17,8 @@ battery = 100
 #    Alternatively lower the target from 2500 to 100 markkaa (line 359 and 361).
 # 4. You can also delete intro_print() (line 321) and instru_print() (line 348) commands to jump straight to the menu.
 
-
 # The following functions have to reside in the main code, as they are heavily interconnected.
 # Importing them from differents files will lead to an inevitable cirtcular import.
-
-
 
 def main_menu():  # displays main menu and player info, allows you to choose an option, chekcs it and returns it.
     player(name, age, total_income)   # diplays player info on top of the menu
@@ -342,7 +339,6 @@ with open("project/save_checkpoint.txt", "r") as file: #Import the "accounts" di
 roadside_net = RoadsideItems() #Creates object in assosiation with the overall item class
 beach_net = BeachItems() #+next line: Creates object in assosiation with the overall item class, by inheritance of previous superClass.
 lake_net = LakeItems()
-
 
 while int(age) >= 12:
     restart = False #+next line : both has to be here in case loaded name doesn't match age. 
