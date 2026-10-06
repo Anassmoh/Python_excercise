@@ -355,7 +355,7 @@ while int(age) >= 12:
         time.sleep(1)
         print(f"\nHello {name}, welcome to MagNet!")
         time.sleep(1)
-        instru_print()
+        #instru_print()
     while not game_over:
         while battery > 0: #as long as there is battery, game will not end 
             main_menu_option = main_menu() #First menu to be displayed after name and age checks out.

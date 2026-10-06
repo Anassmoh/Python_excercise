@@ -3,7 +3,7 @@
 **Anass Mohattan**
 
 MagNet is a text advanture game suitable for age 12+.
-You will need a code editor such as Visual Studio Code in order to play the game, install the interpreter (Python) as well as the python extension. Run the code in the terminal by clicking the play button at the top right of your editor to launch the game, you can interrupt the running code at any time by clicking Ctrl + C.
+You will need a code editor such as Visual Studio Code in order to play the game, install the interpreter (Python) as well as the python extension to vscode. Open the python file in editor, run the code in the terminal by clicking the play button at the top right of your editor to launch the game, you can interrupt the running code at any time by clicking Ctrl + C.
 
 You just watched dozens of combat engineers retrieving land mines that have been burried for last 70 years in an area that you once thought you knew so well. You rush to the basement looking for a specific unfinished project. As your peers direct their questions to the village seniors, they can hear the buzzing sound of your welding machine, your project was missing a need.. a purpose in order to become an invention .. "MagMed!" you said quietly while carving the name into the pipe. MagMed! a magnet equipped with a metal detector.
 
@@ -53,6 +53,7 @@ Learn about metal detectors
 
 Folder scheme:
 
+```
 project
     │   game.py                                      #The main code where the game resides.
     │   readme.md                                    #This file.
@@ -90,3 +91,4 @@ project
     │       
     └───__pycache__
             game.cpython-314.pyc
+```
