@@ -2,7 +2,8 @@ import time
 
 def measuring(): #Overwriting in the same line the measuring visuals.
     for i in range(2):
-        print(f"\rMeasuring the item.                   ", end='')
+        print(f"\rMeasuring the item.                   ", end='') 
+        #formating f"{"Measuring the item":20s}" won't work as end='' ignore the reserved space.
         time.sleep(0.5)
         print(f"\rMeasuring the item..                  ", end='')
         time.sleep(0.5)

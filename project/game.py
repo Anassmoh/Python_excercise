@@ -15,7 +15,8 @@ battery = 100
 # 2. Lower the "battery" value from 100 to 22 (line 11).
 # 3. Higher the total_income from the save_checkpoint disctionnary to 2400, or...
 #    Alternatively lower the target from 2500 to 100 markkaa (line 359 and 361).
-# 4. You can also delete intro_print() (line 321) and instru_print() (line 348) commands to jump straight to the menu.
+# 4. You can also "comment" intro_print() (line 321) and instru_print() (line 348) by adding # 
+#    to jump straight to the menu.
 
 # The following functions have to reside in the main code, as they are heavily interconnected.
 # Importing them from differents files will lead to an inevitable cirtcular import.
@@ -53,7 +54,7 @@ def zone_menu(): # displays litter zones menu and player info, allows you to cho
                     zone_option == "4" 
                     break  # breaks from while True loop and jumps to option 4 which is main menu instead of zone menu.
                 low_battery() # displays a warning msg if battery is low.
-                cast = input("\rPress ENTER to cast your magnet or type any other key to change the zone: ")
+                cast = input("\rPress ENTER to cast MagMed or type any other key to change the zone: ")
                 if cast == "":
                     litter = magnet_fishing() # displays effects, chooses random(int, boolean, str), allows you to name your litter.
                     roadside_net.collectNprint(litter) #This method saves name, weight, matter and price in the RoadsideItem initializer.
@@ -65,7 +66,7 @@ def zone_menu(): # displays litter zones menu and player info, allows you to cho
                     zone_option == "4"
                     break
                 low_battery()
-                cast = input("\rPress ENTER to cast your magnet or type any other key to change the zone: ")
+                cast = input("\rPress ENTER to cast MagMed or type any other key to change the zone: ")
                 if cast == "":
                     litter = magnet_fishing()
                     beach_net.collectNprint(litter) # same method that saves the info, but in the super class initializer (RoadsideNet).
@@ -77,7 +78,7 @@ def zone_menu(): # displays litter zones menu and player info, allows you to cho
                 if battery == 0:
                     break
                 low_battery()
-                cast = input("\rPress ENTER to cast your magnet or type any other key to change the zone: ")
+                cast = input("\rPress ENTER to cast MagMed or type any other key to change the zone: ")
                 if cast == "":
                     litter = magnet_fishing()
                     lake_net.collectNprint(litter) # same method that saves the info, but in the super class initializer (RoadsideNet).
@@ -296,9 +297,10 @@ def restart_game(): #allows you to restart the game by removing the current play
     if restart.lower() == "yes": #Prevents from accidental restart, ignore case sensitivity.
         #TODO: recheck if it works.
         print(f"Goodbye {name}!")
-        players.pop(name) #removes the player from the dictionnary.
-        with open("project/save_checkpoint.txt", "w") as file:  #saves the account modification.
-            json.dump(players, file)
+        if name in players: #only deletes if account has been already saved.
+            players.pop(name) #removes the player from the dictionnary.
+            with open("project/save_checkpoint.txt", "w") as file:  #saves the account modification.
+                json.dump(players, file)
         restart = True
     else:
         restart = False
@@ -352,10 +354,10 @@ while int(age) >= 12:
         restart = True # +next line: Allows you to keep tryng names till it's new player, or an account info matches in the dictionnary.
         game_over = True
     else:
-        time.sleep(1)
+        time.sleep(0.2)
         print(f"\nHello {name}, welcome to MagNet!")
-        time.sleep(1)
-        #instru_print()
+        time.sleep(0.5)
+        instru_print()
     while not game_over:
         while battery > 0: #as long as there is battery, game will not end 
             main_menu_option = main_menu() #First menu to be displayed after name and age checks out.
@@ -408,8 +410,9 @@ while int(age) >= 12:
             break
     if restart == True: #If restart process is definite, will turn main_menu back to normal.
         main_menu_list = [" [1]► Play", " [2]► Inventory", " [3]► Recycle", " [4]► Exit"]
+        intro_print()
         name, age = name_age()
-        total_income = 0 #+nest: reset both values, new player will carry on the deleted player's progress
+        total_income = 0 #+next: reset both values, else new player will carry on the deleted player's progress
         battery = 100
     elif game_over == True:
         break

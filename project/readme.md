@@ -41,7 +41,7 @@ The game may be developped in the future, if so, the updates would gradually inc
 -Scrap metal garage sell. (pop up offers by the villagers to buy reusable items at a higher price).
 -Rare coin collection exhibit.
 
--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
 
 AI have been used to:
 Learn new python features.
@@ -49,7 +49,7 @@ Study whether some features exist (overwriting in terminal)
 Discover built-in alternatives (golbal, flush..)
 Learn about metal detectors
 
--------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------
 
 Folder scheme:
 
