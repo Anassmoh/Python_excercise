@@ -46,7 +46,7 @@ def instru_print():  #displays intructions from inported text file
         flush_print(instr,723,909)
         flush_print(instr,909,1205)
         flush_print(instr,1205,1293)
-        flush_print(instr,1293,1547)
+        flush_print(instr,1293,1548)
         time.sleep(4)
     print("\n")
     

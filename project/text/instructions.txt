@@ -11,10 +11,10 @@ gold being the most rewarding.
 Save the progress by properly quitting the game, the wallet will be saved as it is in the menu,
 all the non-recycled items will be processed automatically without you earning its worth.
 Remember! your MagMed is battery powered, it's consumed while actively magnet fishing. Draining it 
-will lead to an unproper game shutdown, make sure you casually recycle your catch, then quit the 
+will lead to an improper game shutdown, make sure you casually recycle your catch, then quit the 
 game once the battery is low, this will save your progress and allow you to recharge the battery.
 Choosing to restart the game however, will delete your account as well as the progress.
-These are some common finds in your area according to the recycling center reports:
+These are some common finds in your area according to the recycling center report: 
 nail, screw, bolt, ring, bracelet, horseshoe, brake pad, lug nut, battery, wire, beverage can, 
-watch, shell casing, munition, knife, necklace, fishing hook, coin, key..
+watch, shell casing, munition, knife, necklace, fishing hook, coin, key...
 

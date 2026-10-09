@@ -7,7 +7,7 @@ You will need a code editor such as Visual Studio Code in order to play the game
 
 You just watched dozens of combat engineers retrieving land mines that have been burried for last 70 years in an area that you once thought you knew so well. You rush to the basement looking for a specific unfinished project. As your peers direct their questions to the village seniors, they can hear the buzzing sound of your welding machine, your project was missing a need.. a purpose in order to become an invention .. "MagMed!" you said quietly while carving the name into the pipe. MagMed! a magnet equipped with a metal detector.
 
-Your mission is to sweep the area from all kind of metal, you can choose to play in three different litter zones, each has its own MagNet -  a reinforced heavy-duty net made specifically to resist sharp and corroded metal.
+Your mission is to sweep the area from all kinds of metal, you can choose to play in three different litter zones, each has its own MagNet -  a reinforced heavy-duty net made specifically to resist sharp and corroded metal.
 
 MagMed will detect any conductive metal on its way, once the electromagnetic field disturbed, hold your position, scrap the ground, pick up the item, and measure its weight, if it's iron the magnet will pull it for you.
 
@@ -15,17 +15,17 @@ Label your item with the relevant name before adding it to MagNet, unlabelled it
 
 Rule number one: Item found, item collected! You can never put the litter back, regardless of its matter, state or weight.
 
-You can view each Magnet content or your whole catch from the inventory menu. Once it starts to be filled, recycle it at the recycling center, you will receive an income based on the total weight of each matter.
+You can view each MagNet content or your whole catch from the inventory menu. Once it starts to be filled, recycle it at the recycling center, you will receive an income based on the total weight of each matter.
 
-Primarely, your mission is to clean your area from all the hazards and promote a sustainable lifestyle. Additionally, an income of 2500 markka is set for you as a daily goal.
+Primarely, your mission is to clean your area from all the hazards and promote a sustainable lifestyle. Additionally, an income of 2500 Markkaa is set for you as a daily goal.
 
-MagMed is equipped with a 9V battery, which is draining 1% to 3% everytime you cast it, bear in mind that you may not be able to reach your daily goal with one charge, a low battery message will indicate that you need to soon quit the game, to allow the battery to charge, also to save your progress, which can only be done by properly exiting the game.
+MagMed is equipped with a 9V battery, which drains 1% to 3% every time you cast it, bear in mind that you may not be able to reach your daily goal with one charge, a low battery message will indicate that you need to soon quit the game, to allow the battery to charge, also to save your progress, which can only be done by properly exiting the game.
 
-A full battery drain or an unpropper game disruption will lead to a loss of progress, including the income made during that round. In the other hand Restarting the game will result in your account being deleted.
+A full battery drain or an impropper game disruption will lead to a total loss of progress, including the income made during that round. In the other hand, restarting the game will result in your account being deleted.
 
 Regardless of how the game was terminated, any non-recycled item left behind will be automatically recycled without any income in return.
 
-After recharging your battery, enter your name and age and carry on from your latest saving checkpoint. Once the target reached, you will be greeted and appreciated for your environmental contribution, then the system will recycle your account..
+After recharging your battery, enter your name and age and carry on from your latest saving checkpoint. Once the target reached, you will be greeted and appreciated for your environmental contribution, then the system will recycle your account...
 
 For reference, here's some common finds in your area according to the recycling center report:
 Nail, screw, bolt, ring, bracelet, horseshoe, brake pad, lug nut, battery, wire, beverage can, 

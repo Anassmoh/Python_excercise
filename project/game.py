@@ -15,8 +15,6 @@ battery = 100
 # 2. Lower the "battery" value from 100 to 22 (line 11).
 # 3. Higher the total_income from the save_checkpoint disctionnary to 2400, or...
 #    Alternatively lower the target from 2500 to 100 markkaa (line 359 and 361).
-# 4. You can also "comment" intro_print() (line 321) and instru_print() (line 348) by adding # 
-#    to jump straight to the menu.
 
 # The following functions have to reside in the main code, as they are heavily interconnected.
 # Importing them from differents files will lead to an inevitable cirtcular import.
