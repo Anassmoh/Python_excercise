@@ -305,7 +305,7 @@ def restart_game(): #allows you to restart the game by removing the current play
     return restart #Returns a boolean value, false if restarting process aborted.
 
 def quit(): #Not only allows you to quit the game, but the only way to save your progress.
-    game_over = input('Never quit before recycling, else you will not receive an income upon an automatic recycle\nType "yes" to confirm or any other key to resume: ')
+    game_over = input('Never quit before recycling, else you will not receive an income.\nType "yes" to confirm or any other key to resume: ')
     game_over = game_over.lower() #Prevents from accidental quiting, ignores case sensitivity.
     if game_over == "yes":
         if total_income > 0: #in case you had some income it will save your account
